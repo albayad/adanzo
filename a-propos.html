@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>À propos | Le Carnet d'Adanzo</title>
+    <meta name="description" content="Découvrez Adanzo, l'auteure du Carnet. Son parcours, sa passion pour l'écriture et les coulisses de ce blog littéraire.">
+    <meta name="keywords" content="à propos, Adanzo, écrivaine, auteure, blog littéraire, parcours, écriture">
+    <meta name="author" content="Adanzo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://le-carnet.netlify.app/a-propos.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://le-carnet.netlify.app/a-propos.html">
+    <meta property="og:title" content="À propos | Le Carnet d'Adanzo">
+    <meta property="og:description" content="Découvrez le parcours et la passion d'Adanzo pour l'écriture.">
+    <meta property="og:image" content="https://le-carnet.netlify.app/images/og-image.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Le Carnet d'Adanzo">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="À propos | Le Carnet d'Adanzo">
+    <meta name="twitter:description" content="Découvrez le parcours et la passion d'Adanzo pour l'écriture.">
+    <meta name="twitter:image" content="https://le-carnet.netlify.app/images/og-image.jpg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "À propos",
+        "url": "https://le-carnet.netlify.app/a-propos.html",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Adanzo",
+            "description": "Auteure du blog Le Carnet",
+            "url": "https://le-carnet.netlify.app/a-propos.html"
+        }
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #FAF6F0;
+            --bg-alt: #F0EBE3;
+            --white: #ffffff;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --text-muted: #9B9B9B;
+            --accent: #8B3A3A;
+            --accent-dark: #6D2D2D;
+            --border: #E5DDD0;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', Georgia, serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.8;
+            overflow-x: hidden;
+            font-size: 17px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--text);
+        }
+        
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        
+        header {
+            padding: 2rem 0 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+        
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo span { color: var(--accent); font-style: normal; }
+        
+        nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+        
+        nav ul a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        nav ul a:hover, nav ul a.active { color: var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); background: none; border: none; }
+        
+        .page-header {
+            padding: 5rem 0 4rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .page-header .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* ABOUT CONTENT - SANS PHOTO */
+        .about-content { padding: 5rem 0; }
+        
+        .about-text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+        
+        .about-text em { font-style: italic; color: var(--accent); }
+        
+        .about-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--text-light);
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .about-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-top: 2rem;
+            text-align: right;
+        }
+        
+        .cta-about {
+            padding: 5rem 0;
+            background: var(--bg-alt);
+            text-align: center;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cta-about h2 { font-size: 2rem; font-style: italic; margin-bottom: 0.8rem; }
+        
+        .cta-about p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-accent {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        
+        .btn-accent:hover { background: var(--accent-dark); }
+        
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span { color: var(--accent); font-style: normal; }
+        
+        .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .footer-socials a { color: var(--text-light); font-size: 1rem; transition: color 0.3s; }
+        .footer-socials a:hover { color: var(--accent); }
+        
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        
+        @media (max-width: 640px) {
+            body { font-size: 16px; }
+            .container { padding: 0 1.5rem; }
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                text-align: center;
+                z-index: 100;
+            }
+            nav ul.show { display: flex; }
+            .page-header { padding: 3rem 0 2.5rem; }
+            .page-header h1 { font-size: 2.3rem; }
+            .about-content { padding: 3rem 0; }
+            .about-text h2 { font-size: 1.7rem; }
+            .about-quote { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Le Carnet <span>d'Adanzo</span></a>
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="a-propos.html" class="active">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">Qui suis-je</span>
+            <h1>À propos</h1>
+            <p>Un peu de moi, beaucoup de mots.</p>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="container">
+            <div class="about-text">
+                <h2>Bonjour, je suis Adanzo</h2>
+                <p>J'écris depuis toujours. Enfin, depuis que je sais tenir un stylo. Petite, je noircissais des cahiers entiers de poèmes maladroits, d'histoires sans fin, de lettres que je n'envoyais jamais.</p>
+                <p>Aujourd'hui, j'ai décidé d'ouvrir ce carnet au monde. Pas parce que j'ai quelque chose d'important à dire, mais parce que les mots, quand ils restent enfermés, finissent par peser trop lourd.</p>
+                <div class="about-quote">"Écrire, c'est mettre un peu de lumière dans les coins sombres de soi-même."</div>
+                <p>Ce blog est un espace de liberté. On y parle de <em>silences</em>, de <em>nuits blanches</em>, de <em>racines</em>, de <em>lettres jamais envoyées</em>. De tout ce qui nous traverse et qu'on ne dit pas toujours.</p>
+                <p>Je n'ai pas la prétention de donner des leçons. Je raconte, simplement. Des fragments de vie, des réflexions, des histoires qui, je l'espère, résonneront en vous.</p>
+                <p>Merci d'être là, de lire, de partager. C'est le plus beau cadeau qu'on puisse faire à un écrivain.</p>
+                <p class="about-signature">— Adanzo</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-about">
+        <div class="container">
+            <h2>Envie de lire ?</h2>
+            <p>Découvrez les derniers textes publiés sur le carnet.</p>
+            <a href="articles.html" class="btn-accent">Voir les articles</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Le Carnet <span>d'Adanzo</span></div>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            </div>
+            <p class="footer-text">© 2026 Le Carnet d'Adanzo · Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainMenu = document.getElementById('mainMenu');
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mainMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', function(e) {
+            if (!mainMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                mainMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
