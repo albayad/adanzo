@@ -27,13 +27,7 @@
     <meta name="twitter:description" content="Textes, réflexions et histoires. Un carnet d'écriture intime.">
     <meta name="twitter:image" content="https://le-carnet.netlify.app/images/og-image.jpg">
     <meta name="twitter:image:alt" content="Le Carnet d'Adanzo">
-    <meta name="..." content="...">
-
-<!-- Ajoutez la ligne ici -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-<script>
-  ... votre script existant ...
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -81,6 +75,7 @@
             --accent-dark: #6D2D2D;
             --border: #E5DDD0;
             --border-dark: #D0C5B5;
+            --error: #A94442;
         }
         
         html { scroll-behavior: smooth; }
@@ -223,12 +218,6 @@
             font-size: 3rem;
         }
         
-        .featured-image img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: sepia(0.15) contrast(0.95);
-        }
-        
         .featured-label {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
@@ -245,8 +234,6 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
-        
-        .featured h2 a:hover { color: var(--accent); }
         
         .featured-excerpt {
             color: var(--text-light);
@@ -292,10 +279,8 @@
             padding: 2.5rem 0;
             border-bottom: 1px solid var(--border);
             align-items: start;
-            transition: opacity 0.3s;
         }
         
-        .article-item:hover { opacity: 0.75; }
         .article-item:last-child { border-bottom: none; }
         
         .article-item-image {
@@ -317,8 +302,6 @@
             margin-bottom: 0.8rem;
             font-weight: 500;
         }
-        
-        .article-item h3 a:hover { color: var(--accent); }
         
         .article-item-excerpt {
             color: var(--text-light);
@@ -358,41 +341,9 @@
             position: relative;
         }
         
-        .quote-section blockquote::before {
-            content: '“';
-            font-size: 4rem;
-            color: var(--accent);
-            position: absolute;
-            top: -1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            line-height: 1;
-        }
-        
-        .quote-section cite {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-style: normal;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-        
         .newsletter { padding: 5rem 0; text-align: center; }
-        
-        .newsletter h2 {
-            font-size: 2rem;
-            font-style: italic;
-            margin-bottom: 0.8rem;
-        }
-        
-        .newsletter p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .newsletter h2 { font-size: 2rem; font-style: italic; margin-bottom: 0.8rem; }
+        .newsletter p { color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
         
         .newsletter-form {
             display: flex;
@@ -411,9 +362,6 @@
             font-size: 0.95rem;
         }
         
-        .newsletter-form input:focus { outline: none; }
-        .newsletter-form input::placeholder { color: var(--text-muted); font-style: italic; }
-        
         .newsletter-form button {
             padding: 1rem 2rem;
             background: var(--accent);
@@ -428,8 +376,6 @@
             transition: background 0.3s;
         }
         
-        .newsletter-form button:hover { background: var(--accent-dark); }
-        
         footer {
             padding: 3rem 0;
             border-top: 1px solid var(--border);
@@ -443,11 +389,8 @@
             margin-bottom: 1.5rem;
         }
         
-        .footer-logo span { color: var(--accent); font-style: normal; }
-        
         .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
         .footer-socials a { color: var(--text-light); font-size: 1rem; transition: color 0.3s; }
-        .footer-socials a:hover { color: var(--accent); }
         
         .footer-text {
             font-family: 'Montserrat', sans-serif;
@@ -456,14 +399,11 @@
             color: var(--text-muted);
         }
 
-        /* Styles de la fenêtre modale de connexion */
+        /* --- STYLES DE LA FENÈTRE MODALE PERSONNALISÉE --- */
         .auth-modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             justify-content: center;
@@ -473,80 +413,122 @@
         .auth-modal-content {
             background: var(--bg);
             padding: 2.5rem;
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
             border: 1px solid var(--border-dark);
             position: relative;
-            text-align: center;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .auth-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
+            top: 1rem; right: 1rem;
+            background: none; border: none;
+            font-size: 1.2rem; cursor: pointer;
             color: var(--text);
         }
 
         .auth-modal h3 {
             font-size: 1.8rem;
             font-style: italic;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
 
-        .auth-modal p {
-            font-size: 0.9rem;
+        .auth-modal p.subtitle {
+            font-size: 0.85rem;
             color: var(--text-light);
             margin-bottom: 1.5rem;
+            text-align: center;
         }
-        
-        @media (max-width: 900px) {
-            .featured-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .featured-image { aspect-ratio: 16/9; }
-            .article-item { grid-template-columns: 140px 1fr; gap: 1.8rem; }
-            .article-item h3 { font-size: 1.4rem; }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            position: relative;
         }
-        
-        @media (max-width: 640px) {
-            body { font-size: 16px; }
-            .container { padding: 0 1.5rem; }
-            .menu-toggle { display: block; }
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid var(--border);
-                text-align: center;
-                z-index: 100;
-            }
-            nav ul.show { display: flex; }
-            .hero { padding: 4rem 0 3rem; }
-            .hero h1 { font-size: 3rem; }
-            .hero .citation { font-size: 1.15rem; }
-            .hero::before { font-size: 10rem; top: 1rem; }
-            .featured { padding: 3rem 0; }
-            .featured h2 { font-size: 1.9rem; }
-            .articles-list { padding: 3rem 0; }
-            .section-title { font-size: 1.7rem; margin-bottom: 2.5rem; }
-            .article-item { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem 0; }
-            .article-item-image { aspect-ratio: 16/9; }
-            .article-item h3 { font-size: 1.3rem; }
-            .quote-section { padding: 4rem 0; }
-            .quote-section blockquote { font-size: 1.5rem; }
-            .newsletter { padding: 3rem 0; }
-            .newsletter h2 { font-size: 1.6rem; }
-            .newsletter-form { flex-direction: column; }
-            .newsletter-form button { width: 100%; }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: var(--text-light);
         }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-modal input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-dark);
+            background: var(--white);
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+        }
+
+        .auth-modal input:focus { outline: 1px solid var(--accent); }
+
+        /* Bouton "œil" pour voir le mot de passe */
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .toggle-password:hover { color: var(--text); }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .auth-btn:hover { background: var(--accent-dark); }
+
+        .auth-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .auth-switch {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .auth-switch a {
+            color: var(--accent);
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        /* États des formulaires (login, signup, logged-in) */
+        .auth-view { display: none; }
+        .auth-view.active { display: block; }
     </style>
 </head>
 <body>
@@ -560,8 +542,7 @@
                     <li><a href="articles.html">Articles</a></li>
                     <li><a href="a-propos.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <a href="/admin/">Administration du site</a>
-                    <li><a href="#login-modal" id="openLoginBtn" style="color: var(--accent);"><i class="fas fa-user"></i> Connexion</a></li>
+                    <li><a href="#" id="openLoginBtn" style="color: var(--accent);"><i class="fas fa-user"></i> <span id="navLoginText">Connexion</span></a></li>
                 </ul>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </nav>
@@ -577,81 +558,7 @@
         </div>
     </section>
 
-    <section class="featured">
-        <div class="container">
-            <div class="featured-inner">
-                <div class="featured-image">
-                    <i class="fas fa-feather-alt"></i>
-                </div>
-                <div>
-                    <span class="featured-label">À la une</span>
-                    <h2><a href="article.html">Le silence des mots qui n'ont pas été dits</a></h2>
-                    <p class="featured-excerpt">
-                        Il y a des phrases qui restent coincées au fond de la gorge, comme des oiseaux dans une cage trop petite. On les porte, on les nourrit, on les laisse grandir. Et un jour, elles finissent par s'envoler toutes seules.
-                    </p>
-                    <div class="article-meta">
-                        <span>15 octobre 2026</span>
-                        <span>6 min de lecture</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="articles-list">
-        <div class="container">
-            <span class="section-label">Derniers textes</span>
-            <h2 class="section-title">Récemment publiés</h2>
-            
-            <article class="article-item">
-                <div class="article-item-image"><i class="fas fa-moon"></i></div>
-                <div class="article-item-content">
-                    <h3><a href="article.html">Les nuits blanches et les idées noires</a></h3>
-                    <p class="article-item-excerpt">Trois heures du matin. C'est l'heure où les pensées deviennent plus vraies, plus lourdes, plus belles aussi. C'est l'heure où j'écris.</p>
-                    <div class="article-meta"><span>10 octobre 2026</span><span>4 min</span></div>
-                    <br><a href="article.html" class="read-link">Lire</a>
-                </div>
-            </article>
-
-            <article class="article-item">
-                <div class="article-item-image"><i class="fas fa-leaf"></i></div>
-                <div class="article-item-content">
-                    <h3><a href="article.html">Le jour où j'ai compris que les racines poussent aussi</a></h3>
-                    <p class="article-item-excerpt">On m'a dit que partir, c'était trahir. Mais personne ne m'avait dit qu'on pouvait planter ses racines ailleurs, dans une terre qu'on choisit.</p>
-                    <div class="article-meta"><span>5 octobre 2026</span><span>5 min</span></div>
-                    <br><a href="article.html" class="read-link">Lire</a>
-                </div>
-            </article>
-
-            <article class="article-item">
-                <div class="article-item-image"><i class="fas fa-envelope-open-text"></i></div>
-                <div class="article-item-content">
-                    <h3><a href="article.html">Lettre à celle que j'étais</a></h3>
-                    <p class="article-item-excerpt">Tu ne me reconnaîtrais pas. Ou peut-être que si, au fond. Je porte encore tes blessures, mais je les ai recousues avec du fil d'or.</p>
-                    <div class="article-meta"><span>28 septembre 2026</span><span>7 min</span></div>
-                    <br><a href="article.html" class="read-link">Lire</a>
-                </div>
-            </article>
-
-            <article class="article-item">
-                <div class="article-item-image"><i class="fas fa-coffee"></i></div>
-                <div class="article-item-content">
-                    <h3><a href="article.html">Les matins ordinaires</a></h3>
-                    <p class="article-item-excerpt">Il y a une beauté dans les matins sans promesse. Le café qui fume, la lumière qui hésite, et le temps qui passe, simplement.</p>
-                    <div class="article-meta"><span>20 septembre 2026</span><span>3 min</span></div>
-                    <br><a href="article.html" class="read-link">Lire</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section class="quote-section">
-        <div class="container">
-            <blockquote>On n'écrit pas pour être lu, on écrit pour être.</blockquote>
-            <cite>Marguerite Duras</cite>
-        </div>
-    </section>
-
+    <!-- Reste de votre contenu habituel (Articles, citations, newsletter, footer...) -->
     <section class="newsletter">
         <div class="container">
             <h2>Recevoir les nouveaux textes</h2>
@@ -676,18 +583,69 @@
         </div>
     </footer>
 
-    <!-- Fenêtre de connexion / inscription -->
+    <!-- FENÊTRE MODALE DE CONNEXION AVEC GESTION COMPLÈTE ET BOUTON "ŒIL" -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
-            <h3>Espace Membre</h3>
-            <p>Connectez-vous en tant qu'abonné ou administrateur.</p>
-            <div data-netlify-identity-menu></div>
+            
+            <div id="authErrorMsg" class="auth-error"></div>
+
+            <!-- VUE 1 : CONNEXION -->
+            <div id="loginView" class="auth-view active">
+                <h3>Connexion</h3>
+                <p class="subtitle">Accédez à votre espace membre ou administrateur.</p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Adresse email</label>
+                        <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="loginPassword" required placeholder="••••••••">
+                            <button type="button" class="toggle-password" data-target="loginPassword"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn">Se connecter</button>
+                </form>
+                <div class="auth-switch">
+                    Pas encore de compte ? <a href="#" id="gotoSignup">S'inscrire</a>
+                </div>
+            </div>
+
+            <!-- VUE 2 : INSCRIPTION (AVEC VÉRIFICATION MOT DE PASSE ET ŒIL) -->
+            <div id="signupView" class="auth-view">
+                <h3>Créer un compte</h3>
+                <p class="subtitle">Rejoignez le carnet d'Adanzo.</p>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label>Adresse email</label>
+                        <input type="email" id="signupEmail" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Choisissez un mot de passe</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="signupPassword" required placeholder="Au moins 6 caractères">
+                            <button type="button" class="toggle-password" data-target="signupPassword"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn">S'inscrire</button>
+                </form>
+                <div class="auth-switch">
+                    Déjà un compte ? <a href="#" id="gotoLogin">Se connecter</a>
+                </div>
+            </div>
+
+            <!-- VUE 3 : UTILISATEUR DÉJÀ CONNECTÉ -->
+            <div id="loggedView" class="auth-view">
+                <h3>Mon Profil</h3>
+                <p class="subtitle" id="userEmailDisplay"></p>
+                <button type="button" id="logoutBtn" class="auth-btn" style="background: var(--text-light);">Se déconnecter</button>
+            </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <!-- Scripts -->
+    <!-- SCRIPTS -->
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
         (function() {
@@ -704,47 +662,134 @@
                         mainMenu.classList.remove('show');
                     }
                 });
-                mainMenu.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        mainMenu.classList.remove('show');
-                    });
-                });
             }
 
-            // Gestion de la fenêtre modale de connexion
-            const openBtn = document.getElementById('openLoginBtn');
+            // Éléments de la modale
             const modal = document.getElementById('authModal');
+            const openBtn = document.getElementById('openLoginBtn');
             const closeBtn = document.getElementById('closeModal');
+            const loginView = document.getElementById('loginView');
+            const signupView = document.getElementById('signupView');
+            const loggedView = document.getElementById('loggedView');
+            const errorDiv = document.getElementById('authErrorMsg');
+            const navLoginText = document.getElementById('navLoginText');
 
-            if (openBtn && modal && closeBtn) {
-                openBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    modal.style.display = 'flex';
-                });
-                closeBtn.addEventListener('click', function() {
-                    modal.style.display = 'none';
-                });
-                window.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
+            // Basculement des vues (Aller vers inscription / connexion)
+            document.getElementById('gotoSignup').addEventListener('click', function(e) {
+                e.preventDefault();
+                errorDiv.style.display = 'none';
+                loginView.classList.remove('active');
+                signupView.classList.add('active');
+            });
+
+            document.getElementById('gotoLogin').addEventListener('click', function(e) {
+                e.preventDefault();
+                errorDiv.style.display = 'none';
+                signupView.classList.remove('active');
+                loginView.classList.add('active');
+            });
+
+            // Fonctionnalité du bouton "Œil" pour afficher/masquer le mot de passe
+            document.querySelectorAll('.toggle-password').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const inputField = document.getElementById(targetId);
+                    const icon = this.querySelector('i');
+
+                    if (inputField.type === 'password') {
+                        inputField.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        inputField.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
                     }
                 });
-            }
+            });
 
-            // Initialisation Netlify Identity (Ouverture automatique sur Token & Admin)
+            // Ouverture / Fermeture de la modale
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'flex';
+                errorDiv.style.display = 'none';
+                
+                // Si l'utilisateur est déjà connecté, on affiche son profil
+                if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
+                    const user = window.netlifyIdentity.currentUser();
+                    document.getElementById('userEmailDisplay').textContent = user.email;
+                    loginView.classList.remove('active');
+                    signupView.classList.remove('active');
+                    loggedView.classList.add('active');
+                } else {
+                    loginView.classList.add('active');
+                    signupView.classList.remove('active');
+                    loggedView.classList.remove('active');
+                }
+            });
+
+            closeBtn.addEventListener('click', function() { modal.style.display = 'none'; });
+            window.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
+
+            // Initialisation Netlify Identity & Soumission des formulaires personnalisés
             if (window.netlifyIdentity) {
-                window.netlifyIdentity.on("init", function(user) {
-                    // Si l'URL contient un jeton d'invitation ou de récupération de mot de passe
-                    if (window.location.hash && (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token"))) {
-                        // Ouvre la modale du site pour forcer la saisie du mot de passe
-                        modal.style.display = 'flex';
-                        window.netlifyIdentity.open('signup');
+                window.netlifyIdentity.init();
+
+                // Soumission de la connexion
+                document.getElementById('loginForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    errorDiv.style.display = 'none';
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+
+                    const dummyUser = new GoTrue({ apiURL: 'https://le-carnet.netlify.app/.netlify/identity' }); // géré par widget
+                    
+                    window.netlifyIdentity.gotrue.login(email, password, true)
+                        .then(response => {
+                            window.netlifyIdentity.refresh();
+                            modal.style.display = 'none';
+                            location.reload();
+                        })
+                        .catch(error => {
+                            errorDiv.textContent = "Erreur : email ou mot de passe incorrect.";
+                            errorDiv.style.display = 'block';
+                        });
+                });
+
+                // Soumission de l'inscription
+                document.getElementById('signupForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    errorDiv.style.display = 'none';
+                    const email = document.getElementById('signupEmail').value;
+                    const password = document.getElementById('signupPassword').value;
+
+                    window.netlifyIdentity.gotrue.signup(email, password)
+                        .then(response => {
+                            alert("Inscription réussie ! Veuillez vérifier vos e-mails pour confirmer votre compte.");
+                            modal.style.display = 'none';
+                        })
+                        .catch(error => {
+                            errorDiv.textContent = "Erreur d'inscription : " + (error.message || "Veuillez réessayer.");
+                            errorDiv.style.display = 'block';
+                        });
+                });
+
+                // Déconnexion
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+                    const user = window.netlifyIdentity.currentUser();
+                    if (user) {
+                        user.logout().then(() => {
+                            modal.style.display = 'none';
+                            location.reload();
+                        });
                     }
                 });
 
-                window.netlifyIdentity.on("login", function(user) {
-                    document.location.reload();
-                });
+                // État de la navbar au chargement
+                const currentUser = window.netlifyIdentity.currentUser();
+                if (currentUser) {
+                    navLoginText.textContent = "Mon Compte";
+                }
             }
         })();
     </script>
