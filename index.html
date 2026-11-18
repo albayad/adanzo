@@ -420,11 +420,199 @@
         .auth-view.active { display: block; }
 
         /* ===== RESPONSIVE ===== */
-      @media (max-width: 768px) {
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 0;
+    }
+    
     header .container {
-        flex-wrap: wrap;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
         position: relative;
     }
+    
+    .logo {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .menu-toggle { 
+        display: block; 
+        font-size: 1.6rem;
+        flex-shrink: 0;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text);
+    }
+    
+    nav {
+        position: static;
+        width: auto;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        text-align: center;
+        gap: 1rem;
+        z-index: 999;
+        margin: 0;
+        list-style: none;
+    }
+    
+    nav ul.show { 
+        display: flex; 
+    }
+    
+    nav ul li {
+        width: 100%;
+        padding: 0.3rem 0;
+    }
+    
+    nav ul a {
+        display: block;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-light);
+    }
+    
+    nav ul a:hover,
+    nav ul a.active {
+        color: var(--accent);
+    }
+    
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero::before { font-size: 10rem; top: 1rem; }
+    .hero .citation { font-size: 1.1rem; }
+    
+    .container { padding: 0 1.2rem; }
+    
+    .newsletter { padding: 3rem 0; }
+    .newsletter h2 { font-size: 1.6rem; }
+    .newsletter-form { 
+        flex-direction: column; 
+        border: none; 
+        background: transparent; 
+    }
+    .newsletter-form input { 
+        border: 1px solid var(--border-dark); 
+        margin-bottom: 0.8rem; 
+        background: var(--white); 
+    }
+    
+    .auth-modal-content {
+        padding: 2rem 1.5rem;
+    }
+}
+    
+    header .container {
+        flex-wrap: nowrap;
+        align-items: center;
+        position: relative;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .logo span {
+        display: inline;
+    }
+    
+    .menu-toggle { 
+        display: block; 
+        font-size: 1.6rem;
+        margin-left: auto;
+        flex-shrink: 0;
+        padding: 0.5rem;
+    }
+    
+    nav {
+        position: static;
+        width: auto;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        text-align: center;
+        gap: 1rem;
+        z-index: 999;
+        margin: 0;
+    }
+    
+    nav ul.show { 
+        display: flex; 
+    }
+    
+    nav ul li {
+        width: 100%;
+        padding: 0.3rem 0;
+    }
+    
+    nav ul a {
+        display: block;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero::before { font-size: 10rem; top: 1rem; }
+    .hero .citation { font-size: 1.1rem; }
+    
+    .container { padding: 0 1.2rem; }
+    
+    .newsletter { padding: 3rem 0; }
+    .newsletter h2 { font-size: 1.6rem; }
+    .newsletter-form { 
+        flex-direction: column; 
+        border: none; 
+        background: transparent; 
+    }
+    .newsletter-form input { 
+        border: 1px solid var(--border-dark); 
+        margin-bottom: 0.8rem; 
+        background: var(--white); 
+    }
+    
+    .auth-modal-content {
+        padding: 2rem 1.5rem;
+    }
+}
     
     .logo {
         order: 1;
@@ -560,11 +748,99 @@
                 padding: 2rem 1.5rem;
             }
         }
-        
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.3rem; }
-            .logo { font-size: 1.3rem; }
-        }
+        @media (max-width: 768px) {
+    header {
+        padding: 1rem 0;
+    }
+    
+    header .container {
+        flex-wrap: nowrap;
+        align-items: center;
+        position: relative;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .logo span {
+        display: inline;
+    }
+    
+    .menu-toggle { 
+        display: block; 
+        font-size: 1.6rem;
+        margin-left: auto;
+        flex-shrink: 0;
+        padding: 0.5rem;
+    }
+    
+    nav {
+        position: static;
+        width: auto;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        text-align: center;
+        gap: 1rem;
+        z-index: 999;
+        margin: 0;
+    }
+    
+    nav ul.show { 
+        display: flex; 
+    }
+    
+    nav ul li {
+        width: 100%;
+        padding: 0.3rem 0;
+    }
+    
+    nav ul a {
+        display: block;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero::before { font-size: 10rem; top: 1rem; }
+    .hero .citation { font-size: 1.1rem; }
+    
+    .container { padding: 0 1.2rem; }
+    
+    .newsletter { padding: 3rem 0; }
+    .newsletter h2 { font-size: 1.6rem; }
+    .newsletter-form { 
+        flex-direction: column; 
+        border: none; 
+        background: transparent; 
+    }
+    .newsletter-form input { 
+        border: 1px solid var(--border-dark); 
+        margin-bottom: 0.8rem; 
+        background: var(--white); 
+    }
+    
+    .auth-modal-content {
+        padding: 2rem 1.5rem;
+    }
+}
     </style>
 </head>
 <body>
