@@ -420,15 +420,84 @@
         .auth-view.active { display: block; }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            header .container {
-                flex-wrap: nowrap;
-            }
-            
-            .menu-toggle { 
-                display: block; 
-                order: 2;
-            }
+      @media (max-width: 768px) {
+    header .container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    
+    .logo {
+        order: 1;
+        flex: 1;
+    }
+    
+    .menu-toggle { 
+        display: block; 
+        order: 2;
+        margin-left: auto;
+    }
+    
+    nav {
+        order: 3;
+        width: 100%;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        text-align: center;
+        gap: 1rem;
+        z-index: 999;
+        margin: 0;
+    }
+    
+    nav ul.show { 
+        display: flex; 
+    }
+    
+    nav ul li {
+        width: 100%;
+        padding: 0.3rem 0;
+    }
+    
+    nav ul a {
+        display: block;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 3rem; }
+    .hero::before { font-size: 10rem; top: 1rem; }
+    .hero .citation { font-size: 1.15rem; }
+    
+    .container { padding: 0 1.5rem; }
+    
+    .newsletter { padding: 3rem 0; }
+    .newsletter h2 { font-size: 1.6rem; }
+    .newsletter-form { 
+        flex-direction: column; 
+        border: none; 
+        background: transparent; 
+    }
+    .newsletter-form input { 
+        border: 1px solid var(--border-dark); 
+        margin-bottom: 0.8rem; 
+        background: var(--white); 
+    }
+    
+    .auth-modal-content {
+        padding: 2rem 1.5rem;
+    }
+}
             
             nav {
                 order: 3;
