@@ -1,4 +1,5 @@
 backend:
+  locale: fr
   name: git-gateway
   branch: main
 
