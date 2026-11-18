@@ -62,6 +62,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* CORRECTION ICI : Remplacement de - par * */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
@@ -197,150 +198,6 @@
         
         .hero .citation-author::before { content: '— '; }
         
-        .featured { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-        
-        .featured-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .featured-image {
-            position: relative;
-            aspect-ratio: 4/5;
-            background: var(--bg-alt);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 3rem;
-        }
-        
-        .featured-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.2rem;
-            display: block;
-        }
-        
-        .featured h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        
-        .featured-excerpt {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
-        
-        .article-meta {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-        
-        .article-meta span + span::before { content: ' · '; margin: 0 0.5rem; }
-        
-        .articles-list { padding: 5rem 0; }
-        
-        .section-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-style: italic;
-            margin-bottom: 4rem;
-        }
-        
-        .article-item {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 2.5rem;
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: start;
-        }
-        
-        .article-item:last-child { border-bottom: none; }
-        
-        .article-item-image {
-            aspect-ratio: 4/3;
-            background: var(--bg-alt);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 1.8rem;
-            overflow: hidden;
-        }
-        
-        .article-item-content { padding-top: 0.5rem; }
-        
-        .article-item h3 {
-            font-size: 1.7rem;
-            font-style: italic;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .article-item-excerpt {
-            color: var(--text-light);
-            font-size: 0.98rem;
-            margin-bottom: 1.2rem;
-        }
-        
-        .read-link {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent);
-            transition: color 0.3s;
-        }
-        
-        .read-link:hover { color: var(--accent-dark); }
-        .read-link::after { content: ' →'; transition: margin-left 0.3s; }
-        .read-link:hover::after { margin-left: 0.5rem; }
-        
-        .quote-section {
-            padding: 6rem 0;
-            background: var(--bg-alt);
-            text-align: center;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .quote-section blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-style: italic;
-            max-width: 750px;
-            margin: 0 auto 1.5rem;
-            line-height: 1.5;
-            position: relative;
-        }
-        
         .newsletter { padding: 5rem 0; text-align: center; }
         .newsletter h2 { font-size: 2rem; font-style: italic; margin-bottom: 0.8rem; }
         .newsletter p { color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -475,7 +332,6 @@
 
         .auth-modal input:focus { outline: 1px solid var(--accent); }
 
-        /* Bouton "œil" pour voir le mot de passe */
         .toggle-password {
             position: absolute;
             right: 12px;
@@ -526,9 +382,29 @@
             text-decoration: underline;
         }
 
-        /* États des formulaires (login, signup, logged-in) */
         .auth-view { display: none; }
         .auth-view.active { display: block; }
+
+        /* --- MEDIA QUERIES RESPONSIVE (POUR LES TELEPHONES) --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: var(--bg);
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                text-align: center;
+                gap: 1.2rem;
+            }
+            nav ul.show { display: flex; }
+            .newsletter-form { flex-direction: column; border: none; background: transparent; }
+            .newsletter-form input { border: 1px solid var(--border-dark); margin-bottom: 0.8rem; background: var(--white); }
+        }
     </style>
 </head>
 <body>
@@ -558,7 +434,6 @@
         </div>
     </section>
 
-    <!-- Reste de votre contenu habituel (Articles, citations, newsletter, footer...) -->
     <section class="newsletter">
         <div class="container">
             <h2>Recevoir les nouveaux textes</h2>
@@ -583,7 +458,7 @@
         </div>
     </footer>
 
-    <!-- FENÊTRE MODALE DE CONNEXION AVEC GESTION COMPLÈTE ET BOUTON "ŒIL" -->
+    <!-- FENÊTRE MODALE DE CONNEXION -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
@@ -597,7 +472,7 @@
                 <form id="loginForm">
                     <div class="form-group">
                         <label>Adresse email</label>
-                        <input type="email" id="loginEmail" required placeholder="adanzo.as@gmail.com">
+                        <input type="email" id="loginEmail" required placeholder="votre@email.com">
                     </div>
                     <div class="form-group">
                         <label>Mot de passe</label>
@@ -613,7 +488,7 @@
                 </div>
             </div>
 
-            <!-- VUE 2 : INSCRIPTION (AVEC VÉRIFICATION MOT DE PASSE ET ŒIL) -->
+            <!-- VUE 2 : INSCRIPTION -->
             <div id="signupView" class="auth-view">
                 <h3>Créer un compte</h3>
                 <p class="subtitle">Rejoignez le carnet d'Adanzo.</p>
@@ -636,7 +511,7 @@
                 </div>
             </div>
 
-            <!-- VUE 3 : UTILISATEUR DÉJÀ CONNECTÉ -->
+            <!-- VUE 3 : UTILISATEUR CONNECTÉ -->
             <div id="loggedView" class="auth-view">
                 <h3>Mon Profil</h3>
                 <p class="subtitle" id="userEmailDisplay"></p>
@@ -649,7 +524,6 @@
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
         (function() {
-            // Gestion du menu mobile
             const menuToggle = document.getElementById('menuToggle');
             const mainMenu = document.getElementById('mainMenu');
             if (menuToggle && mainMenu) {
@@ -664,7 +538,6 @@
                 });
             }
 
-            // Éléments de la modale
             const modal = document.getElementById('authModal');
             const openBtn = document.getElementById('openLoginBtn');
             const closeBtn = document.getElementById('closeModal');
@@ -674,7 +547,6 @@
             const errorDiv = document.getElementById('authErrorMsg');
             const navLoginText = document.getElementById('navLoginText');
 
-            // Basculement des vues (Aller vers inscription / connexion)
             document.getElementById('gotoSignup').addEventListener('click', function(e) {
                 e.preventDefault();
                 errorDiv.style.display = 'none';
@@ -689,7 +561,6 @@
                 loginView.classList.add('active');
             });
 
-            // Fonctionnalité du bouton "Œil" pour afficher/masquer le mot de passe
             document.querySelectorAll('.toggle-password').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-target');
@@ -708,13 +579,11 @@
                 });
             });
 
-            // Ouverture / Fermeture de la modale
             openBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 modal.style.display = 'flex';
                 errorDiv.style.display = 'none';
                 
-                // Si l'utilisateur est déjà connecté, on affiche son profil
                 if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
                     const user = window.netlifyIdentity.currentUser();
                     document.getElementById('userEmailDisplay').textContent = user.email;
@@ -731,18 +600,14 @@
             closeBtn.addEventListener('click', function() { modal.style.display = 'none'; });
             window.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
 
-            // Initialisation Netlify Identity & Soumission des formulaires personnalisés
             if (window.netlifyIdentity) {
                 window.netlifyIdentity.init();
 
-                // Soumission de la connexion
                 document.getElementById('loginForm').addEventListener('submit', function(e) {
                     e.preventDefault();
                     errorDiv.style.display = 'none';
                     const email = document.getElementById('loginEmail').value;
                     const password = document.getElementById('loginPassword').value;
-
-                    const dummyUser = new GoTrue({ apiURL: 'https://le-carnet.netlify.app/.netlify/identity' }); // géré par widget
                     
                     window.netlifyIdentity.gotrue.login(email, password, true)
                         .then(response => {
@@ -756,7 +621,6 @@
                         });
                 });
 
-                // Soumission de l'inscription
                 document.getElementById('signupForm').addEventListener('submit', function(e) {
                     e.preventDefault();
                     errorDiv.style.display = 'none';
@@ -774,7 +638,6 @@
                         });
                 });
 
-                // Déconnexion
                 document.getElementById('logoutBtn').addEventListener('click', function() {
                     const user = window.netlifyIdentity.currentUser();
                     if (user) {
@@ -785,7 +648,6 @@
                     }
                 });
 
-                // État de la navbar au chargement
                 const currentUser = window.netlifyIdentity.currentUser();
                 if (currentUser) {
                     navLoginText.textContent = "Mon Compte";
