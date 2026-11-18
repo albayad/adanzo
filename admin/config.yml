@@ -1,15 +1,15 @@
 backend:
   name: git-gateway
-  branch: main # ou master si ton dépôt utilise master
+  branch: main
 
-# Dossier où seront stockés les images uploadées par Adanzo
+# Dossier où seront stockées les images uploadées par Adanzo
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "articles" # Nom interne
-    label: "Articles" # Nom affiché dans le menu
-    folder: "articles" # Dossier où seront créés les fichiers .md
+  - name: "articles"
+    label: "Articles"
+    folder: "articles"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:

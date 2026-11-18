@@ -449,6 +449,53 @@
             letter-spacing: 1px;
             color: var(--text-muted);
         }
+
+        /* Styles de la fenêtre modale de connexion */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-modal-content {
+            background: var(--bg);
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid var(--border-dark);
+            position: relative;
+            text-align: center;
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .auth-modal h3 {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .auth-modal p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
         
         @media (max-width: 900px) {
             .featured-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -507,6 +554,7 @@
                     <li><a href="articles.html">Articles</a></li>
                     <li><a href="a-propos.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#login-modal" id="openLoginBtn" style="color: var(--accent);"><i class="fas fa-user"></i> Connexion</a></li>
                 </ul>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </nav>
@@ -621,8 +669,22 @@
         </div>
     </footer>
 
+    <!-- Fenêtre de connexion / inscription -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+            <h3>Espace Membre</h3>
+            <p>Connectez-vous en tant qu'abonné ou administrateur.</p>
+            <div data-netlify-identity-menu></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
         (function() {
+            // Gestion du menu mobile
             const menuToggle = document.getElementById('menuToggle');
             const mainMenu = document.getElementById('mainMenu');
             if (menuToggle && mainMenu) {
@@ -639,6 +701,42 @@
                     link.addEventListener('click', function() {
                         mainMenu.classList.remove('show');
                     });
+                });
+            }
+
+            // Gestion de la fenêtre modale de connexion
+            const openBtn = document.getElementById('openLoginBtn');
+            const modal = document.getElementById('authModal');
+            const closeBtn = document.getElementById('closeModal');
+
+            if (openBtn && modal && closeBtn) {
+                openBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                });
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+                window.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialisation Netlify Identity (Ouverture automatique sur Token & Admin)
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", function(user) {
+                    // Si l'URL contient un jeton d'invitation ou de récupération de mot de passe
+                    if (window.location.hash && (window.location.hash.includes("invite_token") || window.location.hash.includes("recovery_token"))) {
+                        // Ouvre la modale du site pour forcer la saisie du mot de passe
+                        modal.style.display = 'flex';
+                        window.netlifyIdentity.open('signup');
+                    }
+                });
+
+                window.netlifyIdentity.on("login", function(user) {
+                    document.location.reload();
                 });
             }
         })();
