@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --bg: #FAF6F0;
@@ -195,15 +195,27 @@
         .post-card {
             background: var(--white);
             border: 1px solid var(--border);
-            padding: 2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: border-color 0.25s;
+            overflow: hidden;
         }
 
         .post-card:hover {
             border-color: var(--border-dark);
+        }
+
+        .post-cover {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-alt);
+        }
+
+        .post-body {
+            padding: 1.8rem 2rem 1.2rem;
         }
 
         .post-meta {
@@ -223,7 +235,7 @@
         .post-excerpt {
             color: var(--text-light);
             font-size: 0.98rem;
-            margin-bottom: 1.4rem;
+            margin-bottom: 1rem;
             white-space: pre-line;
         }
 
@@ -231,9 +243,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+            gap: 0.6rem;
             border-top: 1px solid var(--border);
-            padding-top: 1rem;
+            padding: 1rem 2rem 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-card-actions {
+            display: flex;
+            gap: 0.5rem;
         }
 
         .read-more-btn {
@@ -248,6 +266,22 @@
             cursor: pointer;
         }
 
+        .edit-post-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            color: var(--text);
+            padding: 0.35rem 0.7rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .edit-post-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
         .delete-post-btn {
             background: none;
             border: 1px solid var(--border-dark);
@@ -257,6 +291,33 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             cursor: pointer;
+        }
+
+        .delete-post-btn:hover {
+            border-color: var(--error);
+        }
+
+        .image-preview-box {
+            margin-top: 0.6rem;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            padding: 0.6rem;
+            text-align: center;
+        }
+
+        .image-preview-box img {
+            max-height: 170px;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        .reader-cover {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            margin-bottom: 1.4rem;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
         }
         
         .newsletter { padding: 4.5rem 0; text-align: center; }
@@ -332,7 +393,7 @@
         .auth-modal-content {
             background: var(--bg);
             padding: 2.2rem;
-            max-width: 560px;
+            max-width: 580px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -430,6 +491,18 @@
         }
 
         .auth-btn:hover { background: var(--accent-dark); }
+        .auth-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+        .secondary-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            color: var(--text);
+            padding: 0.45rem 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
 
         .auth-error {
             color: var(--error);
@@ -551,7 +624,7 @@
         </div>
     </footer>
 
-    <!-- FENÊTRE MODALE : CONNEXION ADMIN & PUBLICATION D'ARTICLES -->
+    <!-- FENÊTRE MODALE : CONNEXION ADMIN & PUBLICATION / MODIFICATION D'ARTICLES -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
@@ -579,17 +652,23 @@
                 </form>
             </div>
 
-            <!-- VUE 2 : ESPACE PUBLICATION D'ARTICLES (ADMIN CONNECTÉ) -->
+            <!-- VUE 2 : ESPACE PUBLICATION & MODIFICATION D'ARTICLES -->
             <div id="adminView" class="auth-view">
                 <div class="admin-top-bar">
                     <div>
-                        <h3 style="text-align:left; font-size:1.5rem;">Publier un article</h3>
+                        <h3 id="adminFormHeading" style="text-align:left; font-size:1.5rem;">Publier un article</h3>
                         <p class="subtitle" id="adminEmailDisplay" style="text-align:left; margin:0;"></p>
                     </div>
-                    <button type="button" id="logoutBtn" style="background:none; border:1px solid var(--border-dark); padding:0.45rem 0.8rem; font-family:'Montserrat',sans-serif; font-size:0.7rem; text-transform:uppercase; cursor:pointer;">Déconnexion</button>
+                    <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+                        <button type="button" id="cancelEditBtn" class="secondary-btn" style="display:none;">Nouvel article</button>
+                        <button type="button" id="logoutBtn" class="secondary-btn">Déconnexion</button>
+                    </div>
                 </div>
 
                 <form id="publishPostForm">
+                    <input type="hidden" id="editingPostId" value="">
+                    <input type="hidden" id="existingImageUrl" value="">
+
                     <div class="form-group">
                         <label for="postTitle">Titre de l'article</label>
                         <input type="text" id="postTitle" required placeholder="Ex : Le silence des matins calmes">
@@ -604,6 +683,16 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="postImageFile">Image de l'article (optionnel — plume &amp; encrier par défaut)</label>
+                        <input type="file" id="postImageFile" accept="image/*">
+                        <div class="image-preview-box">
+                            <img id="postImagePreview" src="" alt="Aperçu de l'image">
+                            <div style="margin-top:0.5rem;">
+                                <button type="button" id="clearImageBtn" class="secondary-btn" style="display:none;">Retirer l'image (utiliser la plume et l'encrier)</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="postExcerpt">Court extrait (résumé)</label>
                         <input type="text" id="postExcerpt" required placeholder="Une courte phrase d'accroche pour les lecteurs...">
                     </div>
@@ -611,7 +700,7 @@
                         <label for="postContent">Texte complet de l'article</label>
                         <textarea id="postContent" rows="7" required placeholder="Écrivez votre texte ici..."></textarea>
                     </div>
-                    <button type="submit" class="auth-btn">Publier l'article</button>
+                    <button type="submit" id="submitPostBtn" class="auth-btn">Publier l'article</button>
                 </form>
             </div>
         </div>
@@ -621,22 +710,21 @@
     <div id="readerModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeReaderModal" class="auth-close" aria-label="Fermer la lecture"><i class="fas fa-times"></i></button>
+            <img id="readerImage" class="reader-cover" src="" alt="">
             <div class="post-meta" id="readerMeta"></div>
             <h3 id="readerTitle" style="text-align:left; font-size:2rem; font-style:italic; margin-bottom:1.2rem;"></h3>
             <div id="readerContent" style="white-space:pre-line; color:var(--text); line-height:1.85;"></div>
         </div>
     </div>
 
-    <!-- SDK SUPABASE (pour authentification sécurisée + base d'articles partagée) -->
+    <!-- SDK SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         (function() {
-            // =========================================================================
-            // CONFIGURATION SUPABASE (à remplacer par les clés de ton projet Supabase)
-            // Si non configuré, un mode démonstration local permet de tester l'interface.
-            // =========================================================================
             const SUPABASE_URL = "https://bnfchbytwuylotuockfc.supabase.co";
             const SUPABASE_ANON_KEY = "sb_publishable_l4qFUisVKbfkfnZiI7rn0w_hm9FM-kz";
+            const STORAGE_BUCKET = "articles-images";
+
             const isSupabaseConfigured =
                 SUPABASE_URL.startsWith("https://") &&
                 SUPABASE_ANON_KEY.length > 20 &&
@@ -645,6 +733,23 @@
             const supabaseClient = isSupabaseConfigured && window.supabase
                 ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
                 : null;
+
+            // Illustration par défaut : plume et encrier
+            const DEFAULT_INKWELL_IMAGE = "data:image/svg+xml;utf8," + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+                    <rect width="800" height="450" fill="#F0EBE3"/>
+                    <rect x="24" y="24" width="752" height="402" fill="none" stroke="#D0C5B5" stroke-width="1.5"/>
+                    <ellipse cx="400" cy="362" rx="110" ry="14" fill="#D8CEC0"/>
+                    <path d="M352 272 L448 272 L462 352 Q462 364 446 364 L354 364 Q338 364 338 352 Z" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3"/>
+                    <path d="M343 312 L457 312 L460 350 Q460 361 445 361 L355 361 Q341 361 341 350 Z" fill="#8B3A3A" opacity="0.85"/>
+                    <rect x="366" y="254" width="68" height="18" rx="3" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3"/>
+                    <path d="M396 254 L404 254 L402 278 L398 278 Z" fill="#2C2C2C"/>
+                    <path d="M401 254 C420 175, 485 102, 568 64 C548 118, 502 178, 442 222 C425 234, 412 244, 401 254 Z" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M402 253 C448 198, 504 132, 565 66" fill="none" stroke="#8B3A3A" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M438 202 L416 196 M464 172 L440 164 M492 140 L468 130 M520 108 L498 98 M452 214 L468 228 M482 186 L500 202 M512 156 L532 172" stroke="#6B6B6B" stroke-width="1.6" stroke-linecap="round"/>
+                    <text x="400" y="402" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="18" fill="#6B6B6B">Le Carnet d'Adanzo</text>
+                </svg>
+            `);
 
             const LOCAL_POSTS_KEY = "adanzo_blog_posts_v1";
             const LOCAL_SESSION_KEY = "adanzo_local_admin_session";
@@ -656,6 +761,7 @@
                     category: "Carnet intime",
                     excerpt: "Quand la maison se tait encore, les phrases reviennent plus nettes et plus apaisées.",
                     content: "À l'écoute des premières heures, l'écriture n'a pas besoin de bruit pour exister.\n\nChaque paragraphe posé devient un repère, une façon de garder trace d'un instant ou d'une pensée qui traversait l'esprit.",
+                    image_url: "",
                     created_at: new Date().toISOString()
                 }
             ];
@@ -690,6 +796,15 @@
             const readerModal = document.getElementById('readerModal');
             const closeReaderModal = document.getElementById('closeReaderModal');
 
+            const postImageFile = document.getElementById('postImageFile');
+            const postImagePreview = document.getElementById('postImagePreview');
+            const clearImageBtn = document.getElementById('clearImageBtn');
+            const existingImageUrlInput = document.getElementById('existingImageUrl');
+            const editingPostIdInput = document.getElementById('editingPostId');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
+            const adminFormHeading = document.getElementById('adminFormHeading');
+            const submitPostBtn = document.getElementById('submitPostBtn');
+
             function showError(msg) {
                 successDiv.style.display = 'none';
                 errorDiv.textContent = msg;
@@ -707,12 +822,52 @@
                 successDiv.style.display = 'none';
             }
 
+            function updateImagePreview(urlOrData) {
+                if (urlOrData && urlOrData.trim()) {
+                    postImagePreview.src = urlOrData.trim();
+                    clearImageBtn.style.display = 'inline-block';
+                } else {
+                    postImagePreview.src = DEFAULT_INKWELL_IMAGE;
+                    clearImageBtn.style.display = 'none';
+                }
+            }
+
+            function resetPostForm() {
+                editingPostIdInput.value = "";
+                existingImageUrlInput.value = "";
+                document.getElementById('publishPostForm').reset();
+                adminFormHeading.textContent = "Publier un article";
+                submitPostBtn.textContent = "Publier l'article";
+                cancelEditBtn.style.display = "none";
+                updateImagePreview("");
+            }
+
+            function startEditPost(post) {
+                clearMessages();
+                editingPostIdInput.value = post.id;
+                existingImageUrlInput.value = post.image_url || "";
+                document.getElementById('postTitle').value = post.title || "";
+                document.getElementById('postCategory').value = post.category || "Réflexion";
+                document.getElementById('postExcerpt').value = post.excerpt || "";
+                document.getElementById('postContent').value = post.content || "";
+                postImageFile.value = "";
+                adminFormHeading.textContent = "Modifier l'article";
+                submitPostBtn.textContent = "Enregistrer les modifications";
+                cancelEditBtn.style.display = "inline-block";
+                updateImagePreview(post.image_url || "");
+                authModal.style.display = "flex";
+                syncAuthUI();
+            }
+
             function syncAuthUI() {
                 if (currentUser) {
                     navLoginText.textContent = "Publier";
                     document.getElementById('adminEmailDisplay').textContent = "Connecté : " + currentUser.email;
                     loginView.classList.remove('active');
                     adminView.classList.add('active');
+                    if (!postImagePreview.src) {
+                        updateImagePreview(existingImageUrlInput.value);
+                    }
                 } else {
                     navLoginText.textContent = "Espace Admin";
                     loginView.classList.add('active');
@@ -739,6 +894,11 @@
                 return div.innerHTML;
             }
 
+            function getPostImageSrc(post) {
+                const url = (post && post.image_url ? post.image_url : "").trim();
+                return url || DEFAULT_INKWELL_IMAGE;
+            }
+
             function renderPosts() {
                 const grid = document.getElementById('postsGrid');
                 if (!grid) return;
@@ -748,24 +908,38 @@
                     return;
                 }
 
-                grid.innerHTML = postsCache.map((post, idx) => `
-                    <article class="post-card">
-                        <div>
-                            <div class="post-meta">${escapeHtml(post.category || "Article")} · ${formatDate(post.created_at)}</div>
-                            <h3>${escapeHtml(post.title)}</h3>
-                            <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
-                        </div>
-                        <div class="post-actions">
-                            <button type="button" class="read-more-btn" data-index="${idx}">Lire le texte →</button>
-                            ${currentUser ? `<button type="button" class="delete-post-btn" data-id="${escapeHtml(post.id)}"><i class="fas fa-trash"></i> Supprimer</button>` : ""}
-                        </div>
-                    </article>
-                `).join("");
+                grid.innerHTML = postsCache.map((post, idx) => {
+                    const imgSrc = getPostImageSrc(post);
+                    return `
+                        <article class="post-card">
+                            <div>
+                                <img class="post-cover" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(post.title)}">
+                                <div class="post-body">
+                                    <div class="post-meta">${escapeHtml(post.category || "Article")} · ${formatDate(post.created_at)}</div>
+                                    <h3>${escapeHtml(post.title)}</h3>
+                                    <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
+                                </div>
+                            </div>
+                            <div class="post-actions">
+                                <button type="button" class="read-more-btn" data-index="${idx}">Lire le texte →</button>
+                                ${currentUser ? `
+                                    <div class="admin-card-actions">
+                                        <button type="button" class="edit-post-btn" data-index="${idx}"><i class="fas fa-pen"></i> Modifier</button>
+                                        <button type="button" class="delete-post-btn" data-id="${escapeHtml(post.id)}" data-image="${escapeHtml(post.image_url || "")}"><i class="fas fa-trash"></i> Supprimer</button>
+                                    </div>
+                                ` : ""}
+                            </div>
+                        </article>
+                    `;
+                }).join("");
 
                 grid.querySelectorAll(".read-more-btn").forEach(btn => {
                     btn.addEventListener("click", function() {
                         const p = postsCache[Number(this.getAttribute("data-index"))];
                         if (!p) return;
+                        const readerImg = document.getElementById("readerImage");
+                        readerImg.src = getPostImageSrc(p);
+                        readerImg.alt = p.title || "Illustration de l'article";
                         document.getElementById("readerMeta").textContent = `${p.category || "Article"} · ${formatDate(p.created_at)}`;
                         document.getElementById("readerTitle").textContent = p.title;
                         document.getElementById("readerContent").textContent = p.content;
@@ -773,11 +947,19 @@
                     });
                 });
 
+                grid.querySelectorAll(".edit-post-btn").forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        const p = postsCache[Number(this.getAttribute("data-index"))];
+                        if (p) startEditPost(p);
+                    });
+                });
+
                 grid.querySelectorAll(".delete-post-btn").forEach(btn => {
                     btn.addEventListener("click", async function() {
                         const postId = this.getAttribute("data-id");
+                        const imageUrl = this.getAttribute("data-image");
                         if (!confirm("Supprimer cet article ?")) return;
-                        await deletePost(postId);
+                        await deletePost(postId, imageUrl);
                     });
                 });
             }
@@ -809,6 +991,51 @@
                 renderPosts();
             }
 
+            function fileToDataUrl(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            async function uploadArticleImage(file) {
+                if (!file) return null;
+
+                if (supabaseClient) {
+                    const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+                    const filePath = `posts/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext || "jpg"}`;
+
+                    const { error: uploadError } = await supabaseClient.storage
+                        .from(STORAGE_BUCKET)
+                        .upload(filePath, file, {
+                            cacheControl: "3600",
+                            upsert: false
+                        });
+
+                    if (uploadError) {
+                        throw new Error("Upload image impossible : " + uploadError.message);
+                    }
+
+                    const { data } = supabaseClient.storage
+                        .from(STORAGE_BUCKET)
+                        .getPublicUrl(filePath);
+
+                    return data && data.publicUrl ? data.publicUrl : "";
+                }
+
+                return await fileToDataUrl(file);
+            }
+
+            function extractStoragePathFromUrl(url) {
+                if (!url || !url.includes(`/storage/v1/object/public/${STORAGE_BUCKET}/`)) {
+                    return null;
+                }
+                const part = url.split(`/storage/v1/object/public/${STORAGE_BUCKET}/`)[1];
+                return part ? decodeURIComponent(part.split("?")[0]) : null;
+            }
+
             async function createPost(newPost) {
                 if (supabaseClient) {
                     const { error } = await supabaseClient.from("posts").insert([newPost]);
@@ -826,12 +1053,37 @@
                 renderPosts();
             }
 
-            async function deletePost(postId) {
+            async function updatePost(postId, updatedFields) {
                 if (supabaseClient) {
+                    const { error } = await supabaseClient
+                        .from("posts")
+                        .update(updatedFields)
+                        .eq("id", postId);
+                    if (error) throw error;
+                    await loadPosts();
+                    return;
+                }
+
+                postsCache = postsCache.map(item =>
+                    String(item.id) === String(postId) ? { ...item, ...updatedFields } : item
+                );
+                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
+                renderPosts();
+            }
+
+            async function deletePost(postId, imageUrl) {
+                if (supabaseClient) {
+                    const storagePath = extractStoragePathFromUrl(imageUrl);
+                    if (storagePath) {
+                        await supabaseClient.storage.from(STORAGE_BUCKET).remove([storagePath]);
+                    }
                     const { error } = await supabaseClient.from("posts").delete().eq("id", postId);
                     if (error) {
                         alert("Impossible de supprimer l'article : " + error.message);
                         return;
+                    }
+                    if (editingPostIdInput.value === String(postId)) {
+                        resetPostForm();
                     }
                     await loadPosts();
                     return;
@@ -842,37 +1094,76 @@
                 renderPosts();
             }
 
-            // Affichage / masquage mot de passe
-            document.querySelectorAll('.toggle-password').forEach(function(btn) {
+            // Aperçu immédiat quand un fichier est choisi
+            postImageFile.addEventListener("change", async function() {
+                const file = this.files && this.files[0];
+                if (!file) {
+                    updateImagePreview(existingImageUrlInput.value);
+                    return;
+                }
+                const dataUrl = await fileToDataUrl(file);
+                updateImagePreview(dataUrl);
+            });
+
+            // Retirer l'image pour revenir à la plume et l'encrier
+            clearImageBtn.addEventListener("click", function() {
+                postImageFile.value = "";
+                existingImageUrlInput.value = "";
+                updateImagePreview("");
+            });
+
+            cancelEditBtn.addEventListener("click", function() {
+                clearMessages();
+                resetPostForm();
+            });
+
+            // Ouverture / fermeture modales
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                clearMessages();
+                if (!currentUser) {
+                    resetPostForm();
+                } else if (!editingPostIdInput.value) {
+                    updateImagePreview("");
+                }
+                authModal.style.display = 'flex';
+                syncAuthUI();
+            });
+
+            closeBtn.addEventListener('click', function() {
+                authModal.style.display = 'none';
+                clearMessages();
+            });
+
+            closeReaderModal.addEventListener('click', function() {
+                readerModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === authModal) {
+                    authModal.style.display = 'none';
+                    clearMessages();
+                }
+                if (e.target === readerModal) {
+                    readerModal.style.display = 'none';
+                }
+            });
+
+            // Afficher/masquer mot de passe
+            document.querySelectorAll('.toggle-password').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target');
-                    const inputField = document.getElementById(targetId);
+                    const input = document.getElementById(this.getAttribute('data-target'));
                     const icon = this.querySelector('i');
-                    if (inputField.type === 'password') {
-                        inputField.type = 'text';
+                    if (input.type === 'password') {
+                        input.type = 'text';
                         icon.classList.remove('fa-eye');
                         icon.classList.add('fa-eye-slash');
                     } else {
-                        inputField.type = 'password';
+                        input.type = 'password';
                         icon.classList.remove('fa-eye-slash');
                         icon.classList.add('fa-eye');
                     }
                 });
-            });
-
-            openBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                clearMessages();
-                syncAuthUI();
-                authModal.style.display = 'flex';
-            });
-
-            closeBtn.addEventListener('click', function() { authModal.style.display = 'none'; });
-            closeReaderModal.addEventListener('click', function() { readerModal.style.display = 'none'; });
-
-            window.addEventListener('click', function(e) {
-                if (e.target === authModal) authModal.style.display = 'none';
-                if (e.target === readerModal) readerModal.style.display = 'none';
             });
 
             // Connexion administrateur
@@ -885,20 +1176,19 @@
                 if (supabaseClient) {
                     const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
                     if (error) {
-                        showError("Connexion refusée : email ou mot de passe incorrect.");
+                        showError("Connexion impossible : vérifiez votre email et mot de passe.");
                         return;
                     }
                     currentUser = data.user;
-                    syncAuthUI();
                     showSuccess("Connexion réussie.");
+                    syncAuthUI();
                     return;
                 }
 
-                // Mode aperçu local si les clés Supabase ne sont pas encore renseignées
                 currentUser = { email };
                 localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(currentUser));
+                showSuccess("Connecté en mode démonstration local.");
                 syncAuthUI();
-                showSuccess("Connecté en mode test local (configurez Supabase pour la production).");
             });
 
             // Déconnexion
@@ -907,18 +1197,20 @@
                 if (supabaseClient) {
                     await supabaseClient.auth.signOut();
                 }
-                currentUser = null;
                 localStorage.removeItem(LOCAL_SESSION_KEY);
+                currentUser = null;
+                resetPostForm();
                 syncAuthUI();
+                authModal.style.display = 'none';
             });
 
-            // Publication d'un article
+            // Création ou modification d'un article
             document.getElementById('publishPostForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 clearMessages();
 
                 if (!currentUser) {
-                    showError("Vous devez être connecté pour publier.");
+                    showError("Vous devez être connecté pour publier ou modifier un article.");
                     return;
                 }
 
@@ -926,41 +1218,90 @@
                 const category = document.getElementById('postCategory').value;
                 const excerpt = document.getElementById('postExcerpt').value.trim();
                 const content = document.getElementById('postContent').value.trim();
+                const editingId = editingPostIdInput.value.trim();
+                const selectedFile = postImageFile.files && postImageFile.files[0];
+
+                if (!title || !excerpt || !content) {
+                    showError("Merci de remplir le titre, l'extrait et le texte de l'article.");
+                    return;
+                }
+
+                submitPostBtn.disabled = true;
+                submitPostBtn.textContent = editingId ? "Enregistrement..." : "Publication en cours...";
 
                 try {
-                    await createPost({ title, category, excerpt, content });
-                    this.reset();
-                    showSuccess("Article publié avec succès !");
+                    let finalImageUrl = existingImageUrlInput.value.trim();
+
+                    if (selectedFile) {
+                        finalImageUrl = await uploadArticleImage(selectedFile);
+                    }
+
+                    const payload = {
+                        title,
+                        category,
+                        excerpt,
+                        content,
+                        image_url: finalImageUrl
+                    };
+
+                    if (editingId) {
+                        await updatePost(editingId, payload);
+                        showSuccess("Article modifié avec succès !");
+                    } else {
+                        await createPost(payload);
+                        showSuccess("Article publié avec succès !");
+                    }
+
+                    resetPostForm();
+                    setTimeout(() => {
+                        authModal.style.display = 'none';
+                        clearMessages();
+                    }, 800);
                 } catch (err) {
-                    showError("Erreur lors de la publication : " + (err.message || "réessayez."));
+                    showError(err && err.message ? err.message : "Erreur lors de l'enregistrement de l'article.");
+                } finally {
+                    submitPostBtn.disabled = false;
+                    submitPostBtn.textContent = editingPostIdInput.value
+                        ? "Enregistrer les modifications"
+                        : "Publier l'article";
                 }
             });
 
             // Formulaire newsletter
             document.getElementById('newsletterForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert("Merci pour votre inscription aux prochains textes du Carnet d'Adanzo.");
-                this.reset();
+                const emailInput = this.querySelector('input[type="email"]');
+                if (emailInput && emailInput.value.trim()) {
+                    alert("Merci ! Votre adresse (" + emailInput.value.trim() + ") a bien été prise en compte.");
+                    emailInput.value = "";
+                }
             });
 
             // Initialisation session + articles
             (async function init() {
                 if (supabaseClient) {
                     const { data } = await supabaseClient.auth.getSession();
-                    currentUser = data?.session?.user || null;
+                    if (data && data.session && data.session.user) {
+                        currentUser = data.session.user;
+                    }
                     supabaseClient.auth.onAuthStateChange((_event, session) => {
-                        currentUser = session?.user || null;
+                        currentUser = session && session.user ? session.user : null;
                         syncAuthUI();
                     });
                 } else {
                     const savedSession = localStorage.getItem(LOCAL_SESSION_KEY);
                     if (savedSession) {
-                        try { currentUser = JSON.parse(savedSession); } catch (_) { currentUser = null; }
+                        try {
+                            currentUser = JSON.parse(savedSession);
+                        } catch (_) {
+                            currentUser = null;
+                        }
                     }
                 }
 
-                await loadPosts();
+                updateImagePreview("");
                 syncAuthUI();
+                await loadPosts();
             })();
         })();
     </script>
