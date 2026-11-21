@@ -504,6 +504,27 @@
             cursor: pointer;
         }
 
+        .link-action-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0.2rem 0;
+        }
+
+        .link-action-btn:hover {
+            color: var(--accent-dark);
+        }
+
+        .auth-footer-links {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
         .auth-error {
             color: var(--error);
             background: #fdf2f2;
@@ -624,7 +645,7 @@
         </div>
     </footer>
 
-    <!-- FENÊTRE MODALE : CONNEXION ADMIN & PUBLICATION / MODIFICATION D'ARTICLES -->
+    <!-- FENÊTRE MODALE : CONNEXION ADMIN, MOT DE PASSE OUBLIÉ & PUBLICATION -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
@@ -650,9 +671,51 @@
                     </div>
                     <button type="submit" class="auth-btn">Se connecter</button>
                 </form>
+                <div class="auth-footer-links">
+                    <button type="button" id="showForgotViewBtn" class="link-action-btn">Mot de passe oublié ?</button>
+                </div>
             </div>
 
-            <!-- VUE 2 : ESPACE PUBLICATION & MODIFICATION D'ARTICLES -->
+            <!-- VUE 2 : DEMANDE DE RÉINITIALISATION PAR EMAIL -->
+            <div id="forgotView" class="auth-view">
+                <h3>Mot de passe oublié</h3>
+                <p class="subtitle">Entrez votre adresse email administrateur pour recevoir un lien sécurisé de réinitialisation.</p>
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="forgotEmail">Adresse email administrateur</label>
+                        <input type="email" id="forgotEmail" required placeholder="admin@exemple.com">
+                    </div>
+                    <button type="submit" id="sendResetBtn" class="auth-btn">Envoyer le lien par email</button>
+                </form>
+                <div class="auth-footer-links">
+                    <button type="button" id="backToLoginBtn" class="link-action-btn">← Retour à la connexion</button>
+                </div>
+            </div>
+
+            <!-- VUE 3 : DÉFINIR UN NOUVEAU MOT DE PASSE (APRÈS CLIC SUR LE LIEN EMAIL) -->
+            <div id="resetView" class="auth-view">
+                <h3>Nouveau mot de passe</h3>
+                <p class="subtitle">Choisissez un nouveau mot de passe personnel (minimum 6 caractères).</p>
+                <form id="updatePasswordForm">
+                    <div class="form-group">
+                        <label for="newPassword">Nouveau mot de passe</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="newPassword" required minlength="6" placeholder="••••••••">
+                            <button type="button" class="toggle-password" data-target="newPassword"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+                        <div class="input-with-icon">
+                            <input type="password" id="confirmNewPassword" required minlength="6" placeholder="••••••••">
+                            <button type="button" class="toggle-password" data-target="confirmNewPassword"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" id="saveNewPasswordBtn" class="auth-btn">Enregistrer le nouveau mot de passe</button>
+                </form>
+            </div>
+
+            <!-- VUE 4 : ESPACE PUBLICATION & MODIFICATION D'ARTICLES -->
             <div id="adminView" class="auth-view">
                 <div class="admin-top-bar">
                     <div>
@@ -767,6 +830,7 @@
             ];
 
             let currentUser = null;
+            let isRecoveryMode = false;
             let postsCache = [];
 
             // Menu burger mobile
@@ -788,6 +852,8 @@
             const openBtn = document.getElementById('openLoginBtn');
             const closeBtn = document.getElementById('closeModal');
             const loginView = document.getElementById('loginView');
+            const forgotView = document.getElementById('forgotView');
+            const resetView = document.getElementById('resetView');
             const adminView = document.getElementById('adminView');
             const errorDiv = document.getElementById('authErrorMsg');
             const successDiv = document.getElementById('authSuccessMsg');
@@ -820,6 +886,11 @@
             function clearMessages() {
                 errorDiv.style.display = 'none';
                 successDiv.style.display = 'none';
+            }
+
+            function setAuthModalView(targetView) {
+                [loginView, forgotView, resetView, adminView].forEach(v => v.classList.remove('active'));
+                if (targetView) targetView.classList.add('active');
             }
 
             function updateImagePreview(urlOrData) {
@@ -860,18 +931,20 @@
             }
 
             function syncAuthUI() {
-                if (currentUser) {
+                if (isRecoveryMode) {
+                    navLoginText.textContent = "Réinitialisation";
+                    setAuthModalView(resetView);
+                    authModal.style.display = "flex";
+                } else if (currentUser) {
                     navLoginText.textContent = "Publier";
                     document.getElementById('adminEmailDisplay').textContent = "Connecté : " + currentUser.email;
-                    loginView.classList.remove('active');
-                    adminView.classList.add('active');
+                    setAuthModalView(adminView);
                     if (!postImagePreview.src) {
                         updateImagePreview(existingImageUrlInput.value);
                     }
                 } else {
                     navLoginText.textContent = "Espace Admin";
-                    loginView.classList.add('active');
-                    adminView.classList.remove('active');
+                    setAuthModalView(loginView);
                 }
                 renderPosts();
             }
@@ -1117,11 +1190,26 @@
                 resetPostForm();
             });
 
+            // Navigation entre connexion et mot de passe oublié
+            document.getElementById('showForgotViewBtn').addEventListener('click', function() {
+                clearMessages();
+                const currentLoginEmail = document.getElementById('loginEmail').value.trim();
+                if (currentLoginEmail) {
+                    document.getElementById('forgotEmail').value = currentLoginEmail;
+                }
+                setAuthModalView(forgotView);
+            });
+
+            document.getElementById('backToLoginBtn').addEventListener('click', function() {
+                clearMessages();
+                setAuthModalView(loginView);
+            });
+
             // Ouverture / fermeture modales
             openBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 clearMessages();
-                if (!currentUser) {
+                if (!currentUser && !isRecoveryMode) {
                     resetPostForm();
                 } else if (!editingPostIdInput.value) {
                     updateImagePreview("");
@@ -1180,6 +1268,7 @@
                         return;
                     }
                     currentUser = data.user;
+                    isRecoveryMode = false;
                     showSuccess("Connexion réussie.");
                     syncAuthUI();
                     return;
@@ -1191,6 +1280,95 @@
                 syncAuthUI();
             });
 
+            // Envoi de l'email de réinitialisation de mot de passe
+            document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearMessages();
+                const email = document.getElementById('forgotEmail').value.trim();
+                if (!email) {
+                    showError("Veuillez entrer votre adresse email.");
+                    return;
+                }
+
+                if (!supabaseClient) {
+                    showError("Supabase n'est pas configuré sur cette page.");
+                    return;
+                }
+
+                const sendResetBtn = document.getElementById('sendResetBtn');
+                sendResetBtn.disabled = true;
+                sendResetBtn.textContent = "Envoi en cours...";
+
+                try {
+                    const redirectUrl = window.location.origin + window.location.pathname;
+                    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                        redirectTo: redirectUrl
+                    });
+
+                    if (error) {
+                        showError("Impossible d'envoyer l'email : " + error.message);
+                    } else {
+                        showSuccess("Un lien de réinitialisation vient d'être envoyé à " + email + ". Vérifiez votre boîte mail (et les spams).");
+                    }
+                } finally {
+                    sendResetBtn.disabled = false;
+                    sendResetBtn.textContent = "Envoyer le lien par email";
+                }
+            });
+
+            // Enregistrement du nouveau mot de passe après clic sur le lien reçu par email
+            document.getElementById('updatePasswordForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearMessages();
+
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+                if (newPassword.length < 6) {
+                    showError("Le mot de passe doit contenir au moins 6 caractères.");
+                    return;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    showError("Les deux mots de passe ne correspondent pas.");
+                    return;
+                }
+
+                if (!supabaseClient) {
+                    showError("Supabase n'est pas configuré.");
+                    return;
+                }
+
+                const saveBtn = document.getElementById('saveNewPasswordBtn');
+                saveBtn.disabled = true;
+                saveBtn.textContent = "Enregistrement...";
+
+                try {
+                    const { data, error } = await supabaseClient.auth.updateUser({
+                        password: newPassword
+                    });
+
+                    if (error) {
+                        showError("Erreur lors de la mise à jour : " + error.message);
+                        return;
+                    }
+
+                    isRecoveryMode = false;
+                    currentUser = data && data.user ? data.user : currentUser;
+                    document.getElementById('updatePasswordForm').reset();
+
+                    if (window.location.hash) {
+                        history.replaceState(null, "", window.location.pathname + window.location.search);
+                    }
+
+                    showSuccess("Votre nouveau mot de passe a bien été enregistré !");
+                    syncAuthUI();
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = "Enregistrer le nouveau mot de passe";
+                }
+            });
+
             // Déconnexion
             document.getElementById('logoutBtn').addEventListener('click', async function() {
                 clearMessages();
@@ -1199,6 +1377,7 @@
                 }
                 localStorage.removeItem(LOCAL_SESSION_KEY);
                 currentUser = null;
+                isRecoveryMode = false;
                 resetPostForm();
                 syncAuthUI();
                 authModal.style.display = 'none';
@@ -1277,17 +1456,29 @@
                 }
             });
 
-            // Initialisation session + articles
+            // Initialisation session + écoute de la récupération de mot de passe + articles
             (async function init() {
+                if (window.location.hash && window.location.hash.includes("type=recovery")) {
+                    isRecoveryMode = true;
+                }
+
                 if (supabaseClient) {
+                    supabaseClient.auth.onAuthStateChange((event, session) => {
+                        if (event === "PASSWORD_RECOVERY") {
+                            isRecoveryMode = true;
+                            currentUser = session && session.user ? session.user : null;
+                            clearMessages();
+                            syncAuthUI();
+                            return;
+                        }
+                        currentUser = session && session.user ? session.user : null;
+                        syncAuthUI();
+                    });
+
                     const { data } = await supabaseClient.auth.getSession();
                     if (data && data.session && data.session.user) {
                         currentUser = data.session.user;
                     }
-                    supabaseClient.auth.onAuthStateChange((_event, session) => {
-                        currentUser = session && session.user ? session.user : null;
-                        syncAuthUI();
-                    });
                 } else {
                     const savedSession = localStorage.getItem(LOCAL_SESSION_KEY);
                     if (savedSession) {
