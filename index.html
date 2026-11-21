@@ -15,46 +15,8 @@
     <meta property="og:url" content="https://le-carnet.netlify.app/">
     <meta property="og:title" content="Le Carnet d'Adanzo | Blog littéraire">
     <meta property="og:description" content="Textes, réflexions et histoires. Un carnet d'écriture intime où les mots prennent vie.">
-    <meta property="og:image" content="https://le-carnet.netlify.app/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Le Carnet d'Adanzo - Blog littéraire">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Le Carnet d'Adanzo">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Le Carnet d'Adanzo | Blog littéraire">
-    <meta name="twitter:description" content="Textes, réflexions et histoires. Un carnet d'écriture intime.">
-    <meta name="twitter:image" content="https://le-carnet.netlify.app/images/og-image.jpg">
-    <meta name="twitter:image:alt" content="Le Carnet d'Adanzo">
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "Le Carnet d'Adanzo",
-        "url": "https://le-carnet.netlify.app/",
-        "description": "Blog littéraire : textes, réflexions et histoires. Un carnet d'écriture intime.",
-        "inLanguage": "fr-FR",
-        "author": {
-            "@type": "Person",
-            "name": "Adanzo",
-            "url": "https://le-carnet.netlify.app/a-propos.html"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Le Carnet d'Adanzo",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://le-carnet.netlify.app/images/logo.png"
-            }
-        },
-        "image": "https://le-carnet.netlify.app/images/og-image.jpg"
-    }
-    </script>
-    
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +38,7 @@
             --border: #E5DDD0;
             --border-dark: #D0C5B5;
             --error: #A94442;
+            --success: #2E6F40;
         }
         
         html { scroll-behavior: smooth; }
@@ -101,22 +64,14 @@
         
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         
-        /* ===== HEADER ===== */
         header {
             padding: 2rem 0 1.5rem;
             border-bottom: 1px solid var(--border);
             background: var(--bg);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: relative;
         }
         
-        header .container { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
         
         .logo {
             font-family: 'Cormorant Garamond', serif;
@@ -128,17 +83,7 @@
         
         .logo span { color: var(--accent); font-style: normal; }
         
-        nav {
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 2.5rem; 
-            align-items: center; 
-        }
+        nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
         
         nav ul a {
             font-family: 'Montserrat', sans-serif;
@@ -152,19 +97,10 @@
         
         nav ul a:hover, nav ul a.active { color: var(--accent); }
         
-        .menu-toggle { 
-            display: none; 
-            font-size: 1.6rem; 
-            cursor: pointer; 
-            color: var(--text); 
-            background: none; 
-            border: none; 
-            padding: 0.5rem;
-        }
+        .menu-toggle { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); background: none; border: none; padding: 0.5rem; }
         
-        /* ===== HERO ===== */
         .hero {
-            padding: 6rem 0 5rem;
+            padding: 5.5rem 0 4.5rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
             position: relative;
@@ -174,7 +110,7 @@
         .hero::before {
             content: '“';
             position: absolute;
-            top: 2rem;
+            top: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Cormorant Garamond', serif;
@@ -194,15 +130,15 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             display: block;
         }
         
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4.2rem;
             font-weight: 400;
             font-style: italic;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         
         .hero .citation {
@@ -211,7 +147,7 @@
             font-style: italic;
             color: var(--text-light);
             max-width: 600px;
-            margin: 0 auto 0.8rem;
+            margin: 0 auto 0.6rem;
             line-height: 1.6;
         }
         
@@ -223,9 +159,107 @@
         }
         
         .hero .citation-author::before { content: '— '; }
+
+        /* --- SECTION ARTICLES --- */
+        .posts-section {
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-heading span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.4rem;
+            font-style: italic;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.25s;
+        }
+
+        .post-card:hover {
+            border-color: var(--border-dark);
+        }
+
+        .post-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .post-excerpt {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            margin-bottom: 1.4rem;
+            white-space: pre-line;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .delete-post-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            color: var(--error);
+            padding: 0.35rem 0.7rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
         
-        /* ===== NEWSLETTER ===== */
-        .newsletter { padding: 5rem 0; text-align: center; }
+        .newsletter { padding: 4.5rem 0; text-align: center; }
         .newsletter h2 { font-size: 2rem; font-style: italic; margin-bottom: 0.8rem; }
         .newsletter p { color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
         
@@ -260,9 +294,6 @@
             transition: background 0.3s;
         }
         
-        .newsletter-form button:hover { background: var(--accent-dark); }
-        
-        /* ===== FOOTER ===== */
         footer {
             padding: 3rem 0;
             border-top: 1px solid var(--border);
@@ -278,7 +309,6 @@
         
         .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
         .footer-socials a { color: var(--text-light); font-size: 1rem; transition: color 0.3s; }
-        .footer-socials a:hover { color: var(--accent); }
         
         .footer-text {
             font-family: 'Montserrat', sans-serif;
@@ -287,13 +317,13 @@
             color: var(--text-muted);
         }
 
-        /* ===== FENÊTRE MODALE ===== */
+        /* --- FENÊTRE MODALE CONNEXION & PUBLICATION ADMIN --- */
         .auth-modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 1rem;
@@ -301,15 +331,15 @@
 
         .auth-modal-content {
             background: var(--bg);
-            padding: 2.5rem;
-            max-width: 420px;
+            padding: 2.2rem;
+            max-width: 560px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             border: 1px solid var(--border-dark);
             position: relative;
             text-align: left;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-height: 90vh;
-            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         }
 
         .auth-close {
@@ -323,19 +353,19 @@
         .auth-modal h3 {
             font-size: 1.8rem;
             font-style: italic;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             text-align: center;
         }
 
         .auth-modal p.subtitle {
             font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.4rem;
             text-align: center;
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
             position: relative;
         }
 
@@ -355,16 +385,23 @@
             align-items: center;
         }
 
-        .auth-modal input {
+        .auth-modal input,
+        .auth-modal textarea,
+        .auth-modal select {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.75rem 0.9rem;
             border: 1px solid var(--border-dark);
             background: var(--white);
             font-family: 'Lora', serif;
             font-size: 0.95rem;
+            color: var(--text);
         }
 
-        .auth-modal input:focus { outline: 1px solid var(--accent); }
+        .auth-modal input:focus,
+        .auth-modal textarea:focus,
+        .auth-modal select:focus {
+            outline: 1px solid var(--accent);
+        }
 
         .toggle-password {
             position: absolute;
@@ -375,11 +412,10 @@
             color: var(--text-muted);
             font-size: 1rem;
         }
-        .toggle-password:hover { color: var(--text); }
 
         .auth-btn {
             width: 100%;
-            padding: 0.9rem;
+            padding: 0.85rem;
             background: var(--accent);
             color: var(--white);
             border: none;
@@ -390,457 +426,68 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: background 0.3s;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .auth-btn:hover { background: var(--accent-dark); }
 
         .auth-error {
             color: var(--error);
+            background: #fdf2f2;
+            border: 1px solid #f2c6c6;
+            padding: 0.65rem 0.8rem;
             font-size: 0.85rem;
             margin-bottom: 1rem;
             text-align: center;
             display: none;
         }
 
-        .auth-switch {
-            margin-top: 1.5rem;
-            text-align: center;
+        .auth-success {
+            color: var(--success);
+            background: #f0f9f2;
+            border: 1px solid #bce3c6;
+            padding: 0.65rem 0.8rem;
             font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .auth-switch a {
-            color: var(--accent);
-            font-weight: 500;
-            text-decoration: underline;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
         }
 
         .auth-view { display: none; }
         .auth-view.active { display: block; }
 
-        /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    header {
-        padding: 1rem 0;
-    }
-    
-    header .container {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-    }
-    
-    .logo {
-        font-size: 1.2rem;
-        white-space: nowrap;
-        flex-shrink: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .menu-toggle { 
-        display: block; 
-        font-size: 1.6rem;
-        flex-shrink: 0;
-        padding: 0.5rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--text);
-    }
-    
-    nav {
-        position: static;
-        width: auto;
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg);
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        text-align: center;
-        gap: 1rem;
-        z-index: 999;
-        margin: 0;
-        list-style: none;
-    }
-    
-    nav ul.show { 
-        display: flex; 
-    }
-    
-    nav ul li {
-        width: 100%;
-        padding: 0.3rem 0;
-    }
-    
-    nav ul a {
-        display: block;
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
-        font-family: 'Montserrat', sans-serif;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--text-light);
-    }
-    
-    nav ul a:hover,
-    nav ul a.active {
-        color: var(--accent);
-    }
-    
-    .hero { padding: 4rem 0 3rem; }
-    .hero h1 { font-size: 2.8rem; }
-    .hero::before { font-size: 10rem; top: 1rem; }
-    .hero .citation { font-size: 1.1rem; }
-    
-    .container { padding: 0 1.2rem; }
-    
-    .newsletter { padding: 3rem 0; }
-    .newsletter h2 { font-size: 1.6rem; }
-    .newsletter-form { 
-        flex-direction: column; 
-        border: none; 
-        background: transparent; 
-    }
-    .newsletter-form input { 
-        border: 1px solid var(--border-dark); 
-        margin-bottom: 0.8rem; 
-        background: var(--white); 
-    }
-    
-    .auth-modal-content {
-        padding: 2rem 1.5rem;
-    }
-}
-    
-    header .container {
-        flex-wrap: nowrap;
-        align-items: center;
-        position: relative;
-    }
-    
-    .logo {
-        font-size: 1.2rem;
-        white-space: nowrap;
-        flex-shrink: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .logo span {
-        display: inline;
-    }
-    
-    .menu-toggle { 
-        display: block; 
-        font-size: 1.6rem;
-        margin-left: auto;
-        flex-shrink: 0;
-        padding: 0.5rem;
-    }
-    
-    nav {
-        position: static;
-        width: auto;
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg);
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        text-align: center;
-        gap: 1rem;
-        z-index: 999;
-        margin: 0;
-    }
-    
-    nav ul.show { 
-        display: flex; 
-    }
-    
-    nav ul li {
-        width: 100%;
-        padding: 0.3rem 0;
-    }
-    
-    nav ul a {
-        display: block;
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .hero { padding: 4rem 0 3rem; }
-    .hero h1 { font-size: 2.8rem; }
-    .hero::before { font-size: 10rem; top: 1rem; }
-    .hero .citation { font-size: 1.1rem; }
-    
-    .container { padding: 0 1.2rem; }
-    
-    .newsletter { padding: 3rem 0; }
-    .newsletter h2 { font-size: 1.6rem; }
-    .newsletter-form { 
-        flex-direction: column; 
-        border: none; 
-        background: transparent; 
-    }
-    .newsletter-form input { 
-        border: 1px solid var(--border-dark); 
-        margin-bottom: 0.8rem; 
-        background: var(--white); 
-    }
-    
-    .auth-modal-content {
-        padding: 2rem 1.5rem;
-    }
-}
-    
-    .logo {
-        order: 1;
-        flex: 1;
-    }
-    
-    .menu-toggle { 
-        display: block; 
-        order: 2;
-        margin-left: auto;
-    }
-    
-    nav {
-        order: 3;
-        width: 100%;
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg);
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        text-align: center;
-        gap: 1rem;
-        z-index: 999;
-        margin: 0;
-    }
-    
-    nav ul.show { 
-        display: flex; 
-    }
-    
-    nav ul li {
-        width: 100%;
-        padding: 0.3rem 0;
-    }
-    
-    nav ul a {
-        display: block;
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .hero { padding: 4rem 0 3rem; }
-    .hero h1 { font-size: 3rem; }
-    .hero::before { font-size: 10rem; top: 1rem; }
-    .hero .citation { font-size: 1.15rem; }
-    
-    .container { padding: 0 1.5rem; }
-    
-    .newsletter { padding: 3rem 0; }
-    .newsletter h2 { font-size: 1.6rem; }
-    .newsletter-form { 
-        flex-direction: column; 
-        border: none; 
-        background: transparent; 
-    }
-    .newsletter-form input { 
-        border: 1px solid var(--border-dark); 
-        margin-bottom: 0.8rem; 
-        background: var(--white); 
-    }
-    
-    .auth-modal-content {
-        padding: 2rem 1.5rem;
-    }
-}
-            
-            nav {
-                order: 3;
-                width: 100%;
-            }
-            
+        .admin-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .menu-toggle { display: block; }
             nav ul {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                top: 100%; left: 0; width: 100%;
                 background: var(--bg);
                 padding: 1.5rem 0;
                 border-bottom: 1px solid var(--border);
-                box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
                 text-align: center;
-                gap: 1rem;
+                gap: 1.2rem;
                 z-index: 999;
-                margin: 0;
             }
-            
-            nav ul.show { 
-                display: flex; 
-            }
-            
-            nav ul li {
-                width: 100%;
-                padding: 0.3rem 0;
-            }
-            
-            nav ul a {
-                display: block;
-                padding: 0.8rem 1rem;
-                font-size: 0.85rem;
-            }
-            
-            .hero { padding: 4rem 0 3rem; }
-            .hero h1 { font-size: 3rem; }
-            .hero::before { font-size: 10rem; top: 1rem; }
-            .hero .citation { font-size: 1.15rem; }
-            
-            .container { padding: 0 1.5rem; }
-            
-            .newsletter { padding: 3rem 0; }
-            .newsletter h2 { font-size: 1.6rem; }
-            .newsletter-form { 
-                flex-direction: column; 
-                border: none; 
-                background: transparent; 
-            }
-            .newsletter-form input { 
-                border: 1px solid var(--border-dark); 
-                margin-bottom: 0.8rem; 
-                background: var(--white); 
-            }
-            
-            .auth-modal-content {
-                padding: 2rem 1.5rem;
-            }
+            nav ul.show { display: flex; }
+            .newsletter-form { flex-direction: column; border: none; background: transparent; }
+            .newsletter-form input { border: 1px solid var(--border-dark); margin-bottom: 0.8rem; background: var(--white); }
         }
-        @media (max-width: 768px) {
-    header {
-        padding: 1rem 0;
-    }
-    
-    header .container {
-        flex-wrap: nowrap;
-        align-items: center;
-        position: relative;
-    }
-    
-    .logo {
-        font-size: 1.2rem;
-        white-space: nowrap;
-        flex-shrink: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .logo span {
-        display: inline;
-    }
-    
-    .menu-toggle { 
-        display: block; 
-        font-size: 1.6rem;
-        margin-left: auto;
-        flex-shrink: 0;
-        padding: 0.5rem;
-    }
-    
-    nav {
-        position: static;
-        width: auto;
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg);
-        padding: 1.5rem 0;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        text-align: center;
-        gap: 1rem;
-        z-index: 999;
-        margin: 0;
-    }
-    
-    nav ul.show { 
-        display: flex; 
-    }
-    
-    nav ul li {
-        width: 100%;
-        padding: 0.3rem 0;
-    }
-    
-    nav ul a {
-        display: block;
-        padding: 0.8rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .hero { padding: 4rem 0 3rem; }
-    .hero h1 { font-size: 2.8rem; }
-    .hero::before { font-size: 10rem; top: 1rem; }
-    .hero .citation { font-size: 1.1rem; }
-    
-    .container { padding: 0 1.2rem; }
-    
-    .newsletter { padding: 3rem 0; }
-    .newsletter h2 { font-size: 1.6rem; }
-    .newsletter-form { 
-        flex-direction: column; 
-        border: none; 
-        background: transparent; 
-    }
-    .newsletter-form input { 
-        border: 1px solid var(--border-dark); 
-        margin-bottom: 0.8rem; 
-        background: var(--white); 
-    }
-    
-    .auth-modal-content {
-        padding: 2rem 1.5rem;
-    }
-}
     </style>
 </head>
 <body>
@@ -851,10 +498,10 @@
             <nav>
                 <ul id="mainMenu">
                     <li><a href="index.html" class="active">Accueil</a></li>
-                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="#articles">Articles</a></li>
                     <li><a href="a-propos.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#" id="openLoginBtn" style="color: var(--accent);"><i class="fas fa-user"></i> <span id="navLoginText">Connexion</span></a></li>
+                    <li><a href="#" id="openLoginBtn" style="color: var(--accent);"><i class="fas fa-user"></i> <span id="navLoginText">Espace Admin</span></a></li>
                 </ul>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </nav>
@@ -870,12 +517,22 @@
         </div>
     </section>
 
+    <!-- LISTE DES ARTICLES PUBLIÉS -->
+    <section class="posts-section" id="articles">
+        <div class="container">
+            <div class="section-heading">
+                <span>Publications</span>
+                <h2>Derniers textes du carnet</h2>
+            </div>
+            <div class="posts-grid" id="postsGrid"></div>
+        </div>
+    </section>
+
     <section class="newsletter">
         <div class="container">
             <h2>Recevoir les nouveaux textes</h2>
             <p>Inscrivez-vous pour être averti(e) des prochaines publications. Pas de spam, juste des mots.</p>
-            <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="newsletter">
+            <form class="newsletter-form" id="newsletterForm">
                 <input type="email" name="email" placeholder="votre@email.com" required>
                 <button type="submit">S'inscrire</button>
             </form>
@@ -894,23 +551,25 @@
         </div>
     </footer>
 
-    <!-- FENÊTRE MODALE DE CONNEXION -->
+    <!-- FENÊTRE MODALE : CONNEXION ADMIN & PUBLICATION D'ARTICLES -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
             
             <div id="authErrorMsg" class="auth-error"></div>
+            <div id="authSuccessMsg" class="auth-success"></div>
 
+            <!-- VUE 1 : CONNEXION ADMINISTRATEUR -->
             <div id="loginView" class="auth-view active">
-                <h3>Connexion</h3>
-                <p class="subtitle">Accédez à votre espace membre ou administrateur.</p>
+                <h3>Connexion Admin</h3>
+                <p class="subtitle">Connectez-vous pour publier et gérer les articles du carnet.</p>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label>Adresse email</label>
-                        <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                        <label for="loginEmail">Adresse email administrateur</label>
+                        <input type="email" id="loginEmail" required placeholder="admin@exemple.com">
                     </div>
                     <div class="form-group">
-                        <label>Mot de passe</label>
+                        <label for="loginPassword">Mot de passe</label>
                         <div class="input-with-icon">
                             <input type="password" id="loginPassword" required placeholder="••••••••">
                             <button type="button" class="toggle-password" data-target="loginPassword"><i class="fas fa-eye"></i></button>
@@ -918,45 +577,93 @@
                     </div>
                     <button type="submit" class="auth-btn">Se connecter</button>
                 </form>
-                <div class="auth-switch">
-                    Pas encore de compte ? <a href="#" id="gotoSignup">S'inscrire</a>
-                </div>
             </div>
 
-            <div id="signupView" class="auth-view">
-                <h3>Créer un compte</h3>
-                <p class="subtitle">Rejoignez le carnet d'Adanzo.</p>
-                <form id="signupForm">
+            <!-- VUE 2 : ESPACE PUBLICATION D'ARTICLES (ADMIN CONNECTÉ) -->
+            <div id="adminView" class="auth-view">
+                <div class="admin-top-bar">
+                    <div>
+                        <h3 style="text-align:left; font-size:1.5rem;">Publier un article</h3>
+                        <p class="subtitle" id="adminEmailDisplay" style="text-align:left; margin:0;"></p>
+                    </div>
+                    <button type="button" id="logoutBtn" style="background:none; border:1px solid var(--border-dark); padding:0.45rem 0.8rem; font-family:'Montserrat',sans-serif; font-size:0.7rem; text-transform:uppercase; cursor:pointer;">Déconnexion</button>
+                </div>
+
+                <form id="publishPostForm">
                     <div class="form-group">
-                        <label>Adresse email</label>
-                        <input type="email" id="signupEmail" required placeholder="votre@email.com">
+                        <label for="postTitle">Titre de l'article</label>
+                        <input type="text" id="postTitle" required placeholder="Ex : Le silence des matins calmes">
                     </div>
                     <div class="form-group">
-                        <label>Choisissez un mot de passe</label>
-                        <div class="input-with-icon">
-                            <input type="password" id="signupPassword" required placeholder="Au moins 6 caractères">
-                            <button type="button" class="toggle-password" data-target="signupPassword"><i class="fas fa-eye"></i></button>
-                        </div>
+                        <label for="postCategory">Catégorie</label>
+                        <select id="postCategory">
+                            <option value="Réflexion">Réflexion</option>
+                            <option value="Histoire">Histoire</option>
+                            <option value="Carnet intime">Carnet intime</option>
+                            <option value="Poésie / Fragment">Poésie / Fragment</option>
+                        </select>
                     </div>
-                    <button type="submit" class="auth-btn">S'inscrire</button>
+                    <div class="form-group">
+                        <label for="postExcerpt">Court extrait (résumé)</label>
+                        <input type="text" id="postExcerpt" required placeholder="Une courte phrase d'accroche pour les lecteurs...">
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Texte complet de l'article</label>
+                        <textarea id="postContent" rows="7" required placeholder="Écrivez votre texte ici..."></textarea>
+                    </div>
+                    <button type="submit" class="auth-btn">Publier l'article</button>
                 </form>
-                <div class="auth-switch">
-                    Déjà un compte ? <a href="#" id="gotoLogin">Se connecter</a>
-                </div>
-            </div>
-
-            <div id="loggedView" class="auth-view">
-                <h3>Mon Profil</h3>
-                <p class="subtitle" id="userEmailDisplay"></p>
-                <button type="button" id="logoutBtn" class="auth-btn" style="background: var(--text-light);">Se déconnecter</button>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- MODALE DE LECTURE D'ARTICLE -->
+    <div id="readerModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button id="closeReaderModal" class="auth-close" aria-label="Fermer la lecture"><i class="fas fa-times"></i></button>
+            <div class="post-meta" id="readerMeta"></div>
+            <h3 id="readerTitle" style="text-align:left; font-size:2rem; font-style:italic; margin-bottom:1.2rem;"></h3>
+            <div id="readerContent" style="white-space:pre-line; color:var(--text); line-height:1.85;"></div>
+        </div>
+    </div>
+
+    <!-- SDK SUPABASE (pour authentification sécurisée + base d'articles partagée) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         (function() {
-            // Menu hamburger
+            // =========================================================================
+            // CONFIGURATION SUPABASE (à remplacer par les clés de ton projet Supabase)
+            // Si non configuré, un mode démonstration local permet de tester l'interface.
+            // =========================================================================
+            const SUPABASE_URL = "https://bnfchbytwuylotuockfc.supabase.co";
+            const SUPABASE_ANON_KEY = "sb_publishable_l4qFUisVKbfkfnZiI7rn0w_hm9FM-kz";
+            const isSupabaseConfigured =
+                SUPABASE_URL.startsWith("https://") &&
+                SUPABASE_ANON_KEY.length > 20 &&
+                !SUPABASE_URL.includes("VOTRE_");
+
+            const supabaseClient = isSupabaseConfigured && window.supabase
+                ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+                : null;
+
+            const LOCAL_POSTS_KEY = "adanzo_blog_posts_v1";
+            const LOCAL_SESSION_KEY = "adanzo_local_admin_session";
+
+            const defaultPosts = [
+                {
+                    id: "exemple-1",
+                    title: "À l'écoute des premières heures",
+                    category: "Carnet intime",
+                    excerpt: "Quand la maison se tait encore, les phrases reviennent plus nettes et plus apaisées.",
+                    content: "À l'écoute des premières heures, l'écriture n'a pas besoin de bruit pour exister.\n\nChaque paragraphe posé devient un repère, une façon de garder trace d'un instant ou d'une pensée qui traversait l'esprit.",
+                    created_at: new Date().toISOString()
+                }
+            ];
+
+            let currentUser = null;
+            let postsCache = [];
+
+            // Menu burger mobile
             const menuToggle = document.getElementById('menuToggle');
             const mainMenu = document.getElementById('mainMenu');
             if (menuToggle && mainMenu) {
@@ -969,50 +676,178 @@
                         mainMenu.classList.remove('show');
                     }
                 });
-                mainMenu.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        mainMenu.classList.remove('show');
+            }
+
+            const authModal = document.getElementById('authModal');
+            const openBtn = document.getElementById('openLoginBtn');
+            const closeBtn = document.getElementById('closeModal');
+            const loginView = document.getElementById('loginView');
+            const adminView = document.getElementById('adminView');
+            const errorDiv = document.getElementById('authErrorMsg');
+            const successDiv = document.getElementById('authSuccessMsg');
+            const navLoginText = document.getElementById('navLoginText');
+
+            const readerModal = document.getElementById('readerModal');
+            const closeReaderModal = document.getElementById('closeReaderModal');
+
+            function showError(msg) {
+                successDiv.style.display = 'none';
+                errorDiv.textContent = msg;
+                errorDiv.style.display = 'block';
+            }
+
+            function showSuccess(msg) {
+                errorDiv.style.display = 'none';
+                successDiv.textContent = msg;
+                successDiv.style.display = 'block';
+            }
+
+            function clearMessages() {
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+            }
+
+            function syncAuthUI() {
+                if (currentUser) {
+                    navLoginText.textContent = "Publier";
+                    document.getElementById('adminEmailDisplay').textContent = "Connecté : " + currentUser.email;
+                    loginView.classList.remove('active');
+                    adminView.classList.add('active');
+                } else {
+                    navLoginText.textContent = "Espace Admin";
+                    loginView.classList.add('active');
+                    adminView.classList.remove('active');
+                }
+                renderPosts();
+            }
+
+            function formatDate(isoString) {
+                try {
+                    return new Date(isoString).toLocaleDateString("fr-FR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    });
+                } catch (_) {
+                    return "";
+                }
+            }
+
+            function escapeHtml(text) {
+                const div = document.createElement("div");
+                div.textContent = text || "";
+                return div.innerHTML;
+            }
+
+            function renderPosts() {
+                const grid = document.getElementById('postsGrid');
+                if (!grid) return;
+
+                if (!postsCache.length) {
+                    grid.innerHTML = "<p style='text-align:center; color:var(--text-light); grid-column:1/-1;'>Aucun article publié pour le moment.</p>";
+                    return;
+                }
+
+                grid.innerHTML = postsCache.map((post, idx) => `
+                    <article class="post-card">
+                        <div>
+                            <div class="post-meta">${escapeHtml(post.category || "Article")} · ${formatDate(post.created_at)}</div>
+                            <h3>${escapeHtml(post.title)}</h3>
+                            <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
+                        </div>
+                        <div class="post-actions">
+                            <button type="button" class="read-more-btn" data-index="${idx}">Lire le texte →</button>
+                            ${currentUser ? `<button type="button" class="delete-post-btn" data-id="${escapeHtml(post.id)}"><i class="fas fa-trash"></i> Supprimer</button>` : ""}
+                        </div>
+                    </article>
+                `).join("");
+
+                grid.querySelectorAll(".read-more-btn").forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        const p = postsCache[Number(this.getAttribute("data-index"))];
+                        if (!p) return;
+                        document.getElementById("readerMeta").textContent = `${p.category || "Article"} · ${formatDate(p.created_at)}`;
+                        document.getElementById("readerTitle").textContent = p.title;
+                        document.getElementById("readerContent").textContent = p.content;
+                        readerModal.style.display = "flex";
+                    });
+                });
+
+                grid.querySelectorAll(".delete-post-btn").forEach(btn => {
+                    btn.addEventListener("click", async function() {
+                        const postId = this.getAttribute("data-id");
+                        if (!confirm("Supprimer cet article ?")) return;
+                        await deletePost(postId);
                     });
                 });
             }
 
-            // Modal
-            const modal = document.getElementById('authModal');
-            const openBtn = document.getElementById('openLoginBtn');
-            const closeBtn = document.getElementById('closeModal');
-            const loginView = document.getElementById('loginView');
-            const signupView = document.getElementById('signupView');
-            const loggedView = document.getElementById('loggedView');
-            const errorDiv = document.getElementById('authErrorMsg');
-            const navLoginText = document.getElementById('navLoginText');
+            async function loadPosts() {
+                if (supabaseClient) {
+                    const { data, error } = await supabaseClient
+                        .from("posts")
+                        .select("*")
+                        .order("created_at", { ascending: false });
+                    if (!error && Array.isArray(data)) {
+                        postsCache = data;
+                        renderPosts();
+                        return;
+                    }
+                }
 
-            const gotoSignup = document.getElementById('gotoSignup');
-            const gotoLogin = document.getElementById('gotoLogin');
-
-            if (gotoSignup) {
-                gotoSignup.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    errorDiv.style.display = 'none';
-                    loginView.classList.remove('active');
-                    signupView.classList.add('active');
-                });
+                const raw = localStorage.getItem(LOCAL_POSTS_KEY);
+                if (raw) {
+                    try {
+                        postsCache = JSON.parse(raw);
+                    } catch (_) {
+                        postsCache = [...defaultPosts];
+                    }
+                } else {
+                    postsCache = [...defaultPosts];
+                    localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
+                }
+                renderPosts();
             }
 
-            if (gotoLogin) {
-                gotoLogin.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    errorDiv.style.display = 'none';
-                    signupView.classList.remove('active');
-                    loginView.classList.add('active');
+            async function createPost(newPost) {
+                if (supabaseClient) {
+                    const { error } = await supabaseClient.from("posts").insert([newPost]);
+                    if (error) throw error;
+                    await loadPosts();
+                    return;
+                }
+
+                postsCache.unshift({
+                    id: "local-" + Date.now(),
+                    ...newPost,
+                    created_at: new Date().toISOString()
                 });
+                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
+                renderPosts();
             }
 
+            async function deletePost(postId) {
+                if (supabaseClient) {
+                    const { error } = await supabaseClient.from("posts").delete().eq("id", postId);
+                    if (error) {
+                        alert("Impossible de supprimer l'article : " + error.message);
+                        return;
+                    }
+                    await loadPosts();
+                    return;
+                }
+
+                postsCache = postsCache.filter(item => String(item.id) !== String(postId));
+                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
+                renderPosts();
+            }
+
+            // Affichage / masquage mot de passe
             document.querySelectorAll('.toggle-password').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-target');
                     const inputField = document.getElementById(targetId);
                     const icon = this.querySelector('i');
-
                     if (inputField.type === 'password') {
                         inputField.type = 'text';
                         icon.classList.remove('fa-eye');
@@ -1025,93 +860,108 @@
                 });
             });
 
-            if (openBtn) {
-                openBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    modal.style.display = 'flex';
-                    errorDiv.style.display = 'none';
-                    
-                    if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
-                        const user = window.netlifyIdentity.currentUser();
-                        document.getElementById('userEmailDisplay').textContent = user.email;
-                        loginView.classList.remove('active');
-                        signupView.classList.remove('active');
-                        loggedView.classList.add('active');
-                    } else {
-                        loginView.classList.add('active');
-                        signupView.classList.remove('active');
-                        loggedView.classList.remove('active');
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                clearMessages();
+                syncAuthUI();
+                authModal.style.display = 'flex';
+            });
+
+            closeBtn.addEventListener('click', function() { authModal.style.display = 'none'; });
+            closeReaderModal.addEventListener('click', function() { readerModal.style.display = 'none'; });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === authModal) authModal.style.display = 'none';
+                if (e.target === readerModal) readerModal.style.display = 'none';
+            });
+
+            // Connexion administrateur
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearMessages();
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value;
+
+                if (supabaseClient) {
+                    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) {
+                        showError("Connexion refusée : email ou mot de passe incorrect.");
+                        return;
                     }
-                });
-            }
+                    currentUser = data.user;
+                    syncAuthUI();
+                    showSuccess("Connexion réussie.");
+                    return;
+                }
 
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() { modal.style.display = 'none'; });
-            }
-            window.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
+                // Mode aperçu local si les clés Supabase ne sont pas encore renseignées
+                currentUser = { email };
+                localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(currentUser));
+                syncAuthUI();
+                showSuccess("Connecté en mode test local (configurez Supabase pour la production).");
+            });
 
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.init();
+            // Déconnexion
+            document.getElementById('logoutBtn').addEventListener('click', async function() {
+                clearMessages();
+                if (supabaseClient) {
+                    await supabaseClient.auth.signOut();
+                }
+                currentUser = null;
+                localStorage.removeItem(LOCAL_SESSION_KEY);
+                syncAuthUI();
+            });
 
-                const loginForm = document.getElementById('loginForm');
-                if (loginForm) {
-                    loginForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        errorDiv.style.display = 'none';
-                        const email = document.getElementById('loginEmail').value;
-                        const password = document.getElementById('loginPassword').value;
-                        
-                        window.netlifyIdentity.gotrue.login(email, password, true)
-                            .then(response => {
-                                window.netlifyIdentity.refresh();
-                                modal.style.display = 'none';
-                                location.reload();
-                            })
-                            .catch(error => {
-                                errorDiv.textContent = "Erreur : email ou mot de passe incorrect.";
-                                errorDiv.style.display = 'block';
-                            });
+            // Publication d'un article
+            document.getElementById('publishPostForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearMessages();
+
+                if (!currentUser) {
+                    showError("Vous devez être connecté pour publier.");
+                    return;
+                }
+
+                const title = document.getElementById('postTitle').value.trim();
+                const category = document.getElementById('postCategory').value;
+                const excerpt = document.getElementById('postExcerpt').value.trim();
+                const content = document.getElementById('postContent').value.trim();
+
+                try {
+                    await createPost({ title, category, excerpt, content });
+                    this.reset();
+                    showSuccess("Article publié avec succès !");
+                } catch (err) {
+                    showError("Erreur lors de la publication : " + (err.message || "réessayez."));
+                }
+            });
+
+            // Formulaire newsletter
+            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert("Merci pour votre inscription aux prochains textes du Carnet d'Adanzo.");
+                this.reset();
+            });
+
+            // Initialisation session + articles
+            (async function init() {
+                if (supabaseClient) {
+                    const { data } = await supabaseClient.auth.getSession();
+                    currentUser = data?.session?.user || null;
+                    supabaseClient.auth.onAuthStateChange((_event, session) => {
+                        currentUser = session?.user || null;
+                        syncAuthUI();
                     });
+                } else {
+                    const savedSession = localStorage.getItem(LOCAL_SESSION_KEY);
+                    if (savedSession) {
+                        try { currentUser = JSON.parse(savedSession); } catch (_) { currentUser = null; }
+                    }
                 }
 
-                const signupForm = document.getElementById('signupForm');
-                if (signupForm) {
-                    signupForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        errorDiv.style.display = 'none';
-                        const email = document.getElementById('signupEmail').value;
-                        const password = document.getElementById('signupPassword').value;
-
-                        window.netlifyIdentity.gotrue.signup(email, password)
-                            .then(response => {
-                                alert("Inscription réussie ! Veuillez vérifier vos e-mails pour confirmer votre compte.");
-                                modal.style.display = 'none';
-                            })
-                            .catch(error => {
-                                errorDiv.textContent = "Erreur d'inscription : " + (error.message || "Veuillez réessayer.");
-                                errorDiv.style.display = 'block';
-                            });
-                    });
-                }
-
-                const logoutBtn = document.getElementById('logoutBtn');
-                if (logoutBtn) {
-                    logoutBtn.addEventListener('click', function() {
-                        const user = window.netlifyIdentity.currentUser();
-                        if (user) {
-                            user.logout().then(() => {
-                                modal.style.display = 'none';
-                                location.reload();
-                            });
-                        }
-                    });
-                }
-
-                const currentUser = window.netlifyIdentity.currentUser();
-                if (currentUser && navLoginText) {
-                    navLoginText.textContent = "Mon Compte";
-                }
-            }
+                await loadPosts();
+                syncAuthUI();
+            })();
         })();
     </script>
 </body>
