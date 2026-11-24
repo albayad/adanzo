@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://le-carnet.netlify.app/sitemap.xml
+Sitemap: https://adanzo.pages.dev/sitemap.xml
