@@ -751,21 +751,7 @@
                 ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
                 : null;
 
-            const DEFAULT_INKWELL_IMAGE = "data:image/svg+xml;utf8," + encodeURIComponent(`
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
-                    <rect width="800" height="450" fill="#F0EBE3"/>
-                    <rect x="24" y="24" width="752" height="402" fill="none" stroke="#D0C5B5" stroke-width="1.5"/>
-                    <ellipse cx="400" cy="362" rx="110" ry="14" fill="#D8CEC0"/>
-                    <path d="M352 272 L448 272 L462 352 Q462 364 446 364 L354 364 Q338 364 338 352 Z" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3"/>
-                    <path d="M343 312 L457 312 L460 350 Q460 361 445 361 L355 361 Q341 361 341 350 Z" fill="#8B3A3A" opacity="0.85"/>
-                    <rect x="366" y="254" width="68" height="18" rx="3" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3"/>
-                    <path d="M396 254 L404 254 L402 278 L398 278 Z" fill="#2C2C2C"/>
-                    <path d="M401 254 C420 175, 485 102, 568 64 C548 118, 502 178, 442 222 C425 234, 412 244, 401 254 Z" fill="#FAF6F0" stroke="#2C2C2C" stroke-width="3" stroke-linejoin="round"/>
-                    <path d="M402 253 C448 198, 504 132, 565 66" fill="none" stroke="#8B3A3A" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M438 202 L416 196 M464 172 L440 164 M492 140 L468 130 M520 108 L498 98 M452 214 L468 228 M482 186 L500 202 M512 156 L532 172" stroke="#6B6B6B" stroke-width="1.6" stroke-linecap="round"/>
-                    <text x="400" y="402" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="18" fill="#6B6B6B">Le Carnet d'Adanzo</text>
-                </svg>
-            `);
+            const DEFAULT_INKWELL_IMAGE = "images/plume-encrier.jpg";
 
             const LOCAL_POSTS_KEY = "adanzo_blog_posts_v1";
             const LOCAL_SESSION_KEY = "adanzo_local_admin_session";
