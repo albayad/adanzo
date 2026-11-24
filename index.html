@@ -9,10 +9,10 @@
     <meta name="keywords" content="blog littéraire, écriture, textes, réflexions, histoires, carnet d'écriture, Adanzo">
     <meta name="author" content="Adanzo">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://le-carnet.netlify.app/">
+    <link rel="canonical" href="https://adanzo.pages.dev/">
     
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://le-carnet.netlify.app/">
+    <meta property="og:url" content="https://adanzo.pages.dev/">
     <meta property="og:title" content="Le Carnet d'Adanzo | Blog littéraire">
     <meta property="og:description" content="Textes, réflexions et histoires. Un carnet d'écriture intime où les mots prennent vie.">
     <meta property="og:locale" content="fr_FR">
@@ -160,77 +160,391 @@
         
         .hero .citation-author::before { content: '— '; }
 
-        .posts-section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
-        .section-heading { text-align: center; margin-bottom: 3rem; }
-        .section-heading span { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.5rem; }
-        .section-heading h2 { font-size: 2.4rem; font-style: italic; }
-        .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .post-card { background: var(--white); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.25s; overflow: hidden; }
-        .post-card:hover { border-color: var(--border-dark); }
-        .post-cover { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid var(--border); background: var(--bg-alt); }
-        .post-body { padding: 1.8rem 2rem 1.2rem; }
-        .post-meta { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.7rem; }
-        .post-card h3 { font-size: 1.7rem; margin-bottom: 0.8rem; }
-        .post-excerpt { color: var(--text-light); font-size: 0.98rem; margin-bottom: 1rem; white-space: pre-line; }
-        .post-actions { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; border-top: 1px solid var(--border); padding: 1rem 2rem 1.4rem; flex-wrap: wrap; }
-        .admin-card-actions { display: flex; gap: 0.5rem; }
-        .read-more-btn { background: none; border: none; color: var(--accent); font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; cursor: pointer; }
-        .edit-post-btn, .delete-post-btn { background: none; border: 1px solid var(--border-dark); padding: 0.35rem 0.7rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
+        .posts-section {
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-heading span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.4rem;
+            font-style: italic;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.25s;
+            overflow: hidden;
+        }
+
+        .post-card:hover {
+            border-color: var(--border-dark);
+        }
+
+        .post-cover {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-alt);
+        }
+
+        .post-body {
+            padding: 1.8rem 2rem 1.2rem;
+        }
+
+        .post-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .post-excerpt {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+            white-space: pre-line;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.6rem;
+            border-top: 1px solid var(--border);
+            padding: 1rem 2rem 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .edit-post-btn, .delete-post-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            padding: 0.35rem 0.7rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
         .edit-post-btn { color: var(--text); }
         .edit-post-btn:hover { border-color: var(--accent); color: var(--accent); }
         .delete-post-btn { color: var(--error); }
         .delete-post-btn:hover { border-color: var(--error); }
-        .image-preview-box { margin-top: 0.6rem; border: 1px solid var(--border); background: var(--bg-alt); padding: 0.6rem; text-align: center; }
-        .image-preview-box img { max-height: 170px; margin: 0 auto; object-fit: cover; }
-        .reader-cover { width: 100%; max-height: 280px; object-fit: cover; margin-bottom: 1.4rem; border: 1px solid var(--border); background: var(--bg-alt); }
+
+        .image-preview-box {
+            margin-top: 0.6rem;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            padding: 0.6rem;
+            text-align: center;
+        }
+
+        .image-preview-box img {
+            max-height: 170px;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        .reader-cover {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            margin-bottom: 1.4rem;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+        }
         
         .newsletter { padding: 4.5rem 0; text-align: center; }
         .newsletter h2 { font-size: 2rem; font-style: italic; margin-bottom: 0.8rem; }
         .newsletter p { color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .newsletter-form { display: flex; max-width: 450px; margin: 0 auto; border: 1px solid var(--border-dark); background: var(--white); }
-        .newsletter-form input { flex: 1; padding: 1rem 1.5rem; border: none; background: transparent; font-family: 'Lora', serif; font-size: 0.95rem; }
-        .newsletter-form button { padding: 1rem 2rem; background: var(--accent); color: var(--white); border: none; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
         
-        footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
-        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; margin-bottom: 1.5rem; }
+        .newsletter-form {
+            display: flex;
+            max-width: 450px;
+            margin: 0 auto;
+            border: 1px solid var(--border-dark);
+            background: var(--white);
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+        }
+        
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
         .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
         .footer-socials a { color: var(--text-light); font-size: 1rem; transition: color 0.3s; }
-        .footer-text { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 1px; color: var(--text-muted); }
+        
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
 
-        .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; }
-        .auth-modal-content { background: var(--bg); padding: 2.2rem; max-width: 580px; width: 100%; max-height: 90vh; overflow-y: auto; border: 1px solid var(--border-dark); position: relative; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
-        .auth-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text); }
-        .auth-modal h3 { font-size: 1.8rem; font-style: italic; margin-bottom: 0.4rem; text-align: center; }
-        .auth-modal p.subtitle { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.4rem; text-align: center; }
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .auth-modal-content {
+            background: var(--bg);
+            padding: 2.2rem;
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border-dark);
+            position: relative;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none; border: none;
+            font-size: 1.2rem; cursor: pointer;
+            color: var(--text);
+        }
+
+        .auth-modal h3 {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 0.4rem;
+            text-align: center;
+        }
+
+        .auth-modal p.subtitle {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1.4rem;
+            text-align: center;
+        }
+
         .form-group { margin-bottom: 1.1rem; position: relative; }
-        .form-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--text-light); }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: var(--text-light);
+        }
+
         .input-with-icon { position: relative; display: flex; align-items: center; }
-        .auth-modal input, .auth-modal textarea, .auth-modal select { width: 100%; padding: 0.75rem 0.9rem; border: 1px solid var(--border-dark); background: var(--white); font-family: 'Lora', serif; font-size: 0.95rem; color: var(--text); }
-        .auth-modal input:focus, .auth-modal textarea:focus, .auth-modal select:focus { outline: 1px solid var(--accent); }
-        .toggle-password { position: absolute; right: 12px; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; }
-        .auth-btn { width: 100%; padding: 0.85rem; background: var(--accent); color: var(--white); border: none; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 0.4rem; }
+
+        .auth-modal input,
+        .auth-modal textarea,
+        .auth-modal select {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            border: 1px solid var(--border-dark);
+            background: var(--white);
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 0.4rem;
+        }
+
         .auth-btn:hover { background: var(--accent-dark); }
-        .auth-btn:disabled { opacity: 0.65; cursor: not-allowed; }
-        .secondary-btn { background: none; border: 1px solid var(--border-dark); color: var(--text); padding: 0.45rem 0.8rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
-        .link-action-btn { background: none; border: none; color: var(--accent); font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 0.5px; cursor: pointer; text-decoration: underline; padding: 0.2rem 0; }
-        .link-action-btn:hover { color: var(--accent-dark); }
+
+        .secondary-btn {
+            background: none;
+            border: 1px solid var(--border-dark);
+            color: var(--text);
+            padding: 0.45rem 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .link-action-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0.2rem 0;
+        }
+
         .auth-footer-links { margin-top: 1rem; text-align: center; }
-        .auth-error { color: var(--error); background: #fdf2f2; border: 1px solid #f2c6c6; padding: 0.65rem 0.8rem; font-size: 0.85rem; margin-bottom: 1rem; text-align: center; display: none; }
-        .auth-success { color: var(--success); background: #f0f9f2; border: 1px solid #bce3c6; padding: 0.65rem 0.8rem; font-size: 0.85rem; margin-bottom: 1rem; text-align: center; display: none; }
+
+        .auth-error {
+            color: var(--error);
+            background: #fdf2f2;
+            border: 1px solid #f2c6c6;
+            padding: 0.65rem 0.8rem;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .auth-success {
+            color: var(--success);
+            background: #f0f9f2;
+            border: 1px solid #bce3c6;
+            padding: 0.65rem 0.8rem;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
         .auth-view { display: none; }
         .auth-view.active { display: block; }
-        .admin-top-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+
+        .admin-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
             .posts-grid { grid-template-columns: 1fr; }
             .menu-toggle { display: block; }
-            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg); padding: 1.5rem 0; border-bottom: 1px solid var(--border); box-shadow: 0 10px 15px rgba(0,0,0,0.05); text-align: center; gap: 1.2rem; z-index: 999; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background: var(--bg);
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                text-align: center;
+                gap: 1.2rem;
+                z-index: 999;
+            }
             nav ul.show { display: flex; }
             .newsletter-form { flex-direction: column; border: none; background: transparent; }
             .newsletter-form input { border: 1px solid var(--border-dark); margin-bottom: 0.8rem; background: var(--white); }
         }
     </style>
+
+    <meta name="google-site-verification" content="0bKBMC8qUb1ddpSpN8ATAmHwX_x8yHG8hFJ_uLWVuQM" />
 </head>
 <body>
 
@@ -295,6 +609,7 @@
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button id="closeModal" class="auth-close" aria-label="Fermer"><i class="fas fa-times"></i></button>
+            
             <div id="authErrorMsg" class="auth-error"></div>
             <div id="authSuccessMsg" class="auth-success"></div>
 
@@ -368,9 +683,11 @@
                         <button type="button" id="logoutBtn" class="secondary-btn">Déconnexion</button>
                     </div>
                 </div>
+
                 <form id="publishPostForm">
                     <input type="hidden" id="editingPostId" value="">
                     <input type="hidden" id="existingImageUrl" value="">
+
                     <div class="form-group">
                         <label for="postTitle">Titre de l'article</label>
                         <input type="text" id="postTitle" required placeholder="Ex : Le silence des matins calmes">
@@ -417,7 +734,7 @@
             <div id="readerContent" style="white-space:pre-line; color:var(--text); line-height:1.85;"></div>
         </div>
     </div>
-	<!-- SDK SUPABASE -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         (function() {
@@ -465,209 +782,279 @@
                 }
             ];
 
-            let currentUser = null;
-            let isRecoveryMode = false;
-            let postsCache = [];
-
-            const menuToggle = document.getElementById('menuToggle');
-            const mainMenu = document.getElementById('mainMenu');
+            const menuToggle = document.getElementById("menuToggle");
+            const mainMenu = document.getElementById("mainMenu");
             if (menuToggle && mainMenu) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mainMenu.classList.toggle('show');
-                });
-                document.addEventListener('click', function(e) {
-                    if (!mainMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                        mainMenu.classList.remove('show');
-                    }
-                });
+                menuToggle.addEventListener("click", () => mainMenu.classList.toggle("show"));
             }
 
-            const authModal = document.getElementById('authModal');
-            const openBtn = document.getElementById('openLoginBtn');
-            const closeBtn = document.getElementById('closeModal');
-            const loginView = document.getElementById('loginView');
-            const forgotView = document.getElementById('forgotView');
-            const resetView = document.getElementById('resetView');
-            const adminView = document.getElementById('adminView');
-            const errorDiv = document.getElementById('authErrorMsg');
-            const successDiv = document.getElementById('authSuccessMsg');
-            const navLoginText = document.getElementById('navLoginText');
+            const postsGrid = document.getElementById("postsGrid");
+            const readerModal = document.getElementById("readerModal");
+            const closeReaderModal = document.getElementById("closeReaderModal");
+            const readerImage = document.getElementById("readerImage");
+            const readerMeta = document.getElementById("readerMeta");
+            const readerTitle = document.getElementById("readerTitle");
+            const readerContent = document.getElementById("readerContent");
 
-            const readerModal = document.getElementById('readerModal');
-            const closeReaderModal = document.getElementById('closeReaderModal');
+            const authModal = document.getElementById("authModal");
+            const openLoginBtn = document.getElementById("openLoginBtn");
+            const navLoginText = document.getElementById("navLoginText");
+            const closeModal = document.getElementById("closeModal");
+            const authErrorMsg = document.getElementById("authErrorMsg");
+            const authSuccessMsg = document.getElementById("authSuccessMsg");
 
-            const postImageFile = document.getElementById('postImageFile');
-            const postImagePreview = document.getElementById('postImagePreview');
-            const clearImageBtn = document.getElementById('clearImageBtn');
-            const existingImageUrlInput = document.getElementById('existingImageUrl');
-            const editingPostIdInput = document.getElementById('editingPostId');
-            const cancelEditBtn = document.getElementById('cancelEditBtn');
-            const adminFormHeading = document.getElementById('adminFormHeading');
-            const submitPostBtn = document.getElementById('submitPostBtn');
+            const loginView = document.getElementById("loginView");
+            const forgotView = document.getElementById("forgotView");
+            const resetView = document.getElementById("resetView");
+            const adminView = document.getElementById("adminView");
 
-            function showError(msg) {
-                successDiv.style.display = 'none';
-                errorDiv.textContent = msg;
-                errorDiv.style.display = 'block';
+            const showForgotViewBtn = document.getElementById("showForgotViewBtn");
+            const backToLoginBtn = document.getElementById("backToLoginBtn");
+            const loginForm = document.getElementById("loginForm");
+            const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+            const updatePasswordForm = document.getElementById("updatePasswordForm");
+            const publishPostForm = document.getElementById("publishPostForm");
+            const logoutBtn = document.getElementById("logoutBtn");
+            const cancelEditBtn = document.getElementById("cancelEditBtn");
+            const adminEmailDisplay = document.getElementById("adminEmailDisplay");
+            const adminFormHeading = document.getElementById("adminFormHeading");
+            const submitPostBtn = document.getElementById("submitPostBtn");
+
+            const editingPostIdInput = document.getElementById("editingPostId");
+            const existingImageUrlInput = document.getElementById("existingImageUrl");
+            const postImageFileInput = document.getElementById("postImageFile");
+            const postImagePreview = document.getElementById("postImagePreview");
+            const clearImageBtn = document.getElementById("clearImageBtn");
+
+            let currentPosts = [];
+            let currentAdminEmail = null;
+            let pendingSelectedFile = null;
+
+            function escapeHtml(str) {
+                return String(str || "")
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
             }
 
-            function showSuccess(msg) {
-                errorDiv.style.display = 'none';
-                successDiv.textContent = msg;
-                successDiv.style.display = 'block';
+            function formatDate(dateStr) {
+                const d = new Date(dateStr);
+                if (isNaN(d.getTime())) return "";
+                return d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
             }
 
-            function clearMessages() {
-                errorDiv.style.display = 'none';
-                successDiv.style.display = 'none';
+            function getPostImageSrc(post) {
+                return post && post.image_url && post.image_url.trim() !== ""
+                    ? post.image_url
+                    : DEFAULT_INKWELL_IMAGE;
             }
 
-            function setAuthModalView(targetView) {
-                [loginView, forgotView, resetView, adminView].forEach(v => v.classList.remove('active'));
-                if (targetView) targetView.classList.add('active');
-            }
-
-            function updateImagePreview(urlOrData) {
-                if (urlOrData && urlOrData.trim()) {
-                    postImagePreview.src = urlOrData.trim();
-                    clearImageBtn.style.display = 'inline-block';
+            function updateImagePreview(imageUrl) {
+                if (imageUrl && imageUrl.trim() !== "") {
+                    postImagePreview.src = imageUrl;
+                    clearImageBtn.style.display = "inline-block";
                 } else {
                     postImagePreview.src = DEFAULT_INKWELL_IMAGE;
-                    clearImageBtn.style.display = 'none';
+                    clearImageBtn.style.display = "none";
                 }
             }
 
-            function resetPostForm() {
+            function resetPostFormToCreate() {
                 editingPostIdInput.value = "";
                 existingImageUrlInput.value = "";
-                document.getElementById('publishPostForm').reset();
+                pendingSelectedFile = null;
+                postImageFileInput.value = "";
+                publishPostForm.reset();
                 adminFormHeading.textContent = "Publier un article";
                 submitPostBtn.textContent = "Publier l'article";
                 cancelEditBtn.style.display = "none";
                 updateImagePreview("");
             }
 
-            function startEditPost(post) {
+            function startEditingPost(post) {
                 clearMessages();
                 editingPostIdInput.value = post.id;
                 existingImageUrlInput.value = post.image_url || "";
-                document.getElementById('postTitle').value = post.title || "";
-                document.getElementById('postCategory').value = post.category || "Réflexion";
-                document.getElementById('postExcerpt').value = post.excerpt || "";
-                document.getElementById('postContent').value = post.content || "";
-                postImageFile.value = "";
+                pendingSelectedFile = null;
+                postImageFileInput.value = "";
+                document.getElementById("postTitle").value = post.title || "";
+                document.getElementById("postCategory").value = post.category || "Réflexion";
+                document.getElementById("postExcerpt").value = post.excerpt || "";
+                document.getElementById("postContent").value = post.content || "";
                 adminFormHeading.textContent = "Modifier l'article";
                 submitPostBtn.textContent = "Enregistrer les modifications";
                 cancelEditBtn.style.display = "inline-block";
                 updateImagePreview(post.image_url || "");
-                authModal.style.display = "flex";
-                syncAuthUI();
+                switchView(adminView);
+                openModal();
             }
 
-            function syncAuthUI() {
-                if (isRecoveryMode) {
-                    navLoginText.textContent = "Réinitialisation";
-                    setAuthModalView(resetView);
-                    authModal.style.display = "flex";
-                } else if (currentUser) {
+            postImageFileInput.addEventListener("change", () => {
+                const file = postImageFileInput.files && postImageFileInput.files[0];
+                if (!file) return;
+                pendingSelectedFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    postImagePreview.src = e.target.result;
+                    clearImageBtn.style.display = "inline-block";
+                };
+                reader.readAsDataURL(file);
+            });
+
+            clearImageBtn.addEventListener("click", () => {
+                pendingSelectedFile = null;
+                postImageFileInput.value = "";
+                existingImageUrlInput.value = "";
+                updateImagePreview("");
+            });
+
+            cancelEditBtn.addEventListener("click", () => {
+                clearMessages();
+                resetPostFormToCreate();
+            });
+
+            function clearMessages() {
+                authErrorMsg.style.display = "none";
+                authErrorMsg.textContent = "";
+                authSuccessMsg.style.display = "none";
+                authSuccessMsg.textContent = "";
+            }
+
+            function showError(msg) {
+                authSuccessMsg.style.display = "none";
+                authErrorMsg.textContent = msg;
+                authErrorMsg.style.display = "block";
+            }
+
+            function showSuccess(msg) {
+                authErrorMsg.style.display = "none";
+                authSuccessMsg.textContent = msg;
+                authSuccessMsg.style.display = "block";
+            }
+
+            function switchView(targetView) {
+                [loginView, forgotView, resetView, adminView].forEach(v => v.classList.remove("active"));
+                targetView.classList.add("active");
+            }
+
+            function openModal() {
+                authModal.style.display = "flex";
+            }
+
+            function closeAuthModal() {
+                authModal.style.display = "none";
+                clearMessages();
+            }
+
+            function updateAdminNavState(email) {
+                currentAdminEmail = email || null;
+                if (currentAdminEmail) {
                     navLoginText.textContent = "Publier";
-                    document.getElementById('adminEmailDisplay').textContent = "Connecté : " + currentUser.email;
-                    setAuthModalView(adminView);
-                    if (!postImagePreview.src) {
-                        updateImagePreview(existingImageUrlInput.value);
-                    }
+                    adminEmailDisplay.textContent = "Connecté : " + currentAdminEmail;
                 } else {
                     navLoginText.textContent = "Espace Admin";
-                    setAuthModalView(loginView);
+                    adminEmailDisplay.textContent = "";
+                    resetPostFormToCreate();
                 }
-                renderPosts();
+                renderPosts(currentPosts);
             }
 
-            function formatDate(isoString) {
+            function getLocalPosts() {
                 try {
-                    return new Date(isoString).toLocaleDateString("fr-FR", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric"
-                    });
+                    const raw = localStorage.getItem(LOCAL_POSTS_KEY);
+                    if (!raw) {
+                        localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(defaultPosts));
+                        return [...defaultPosts];
+                    }
+                    const parsed = JSON.parse(raw);
+                    return Array.isArray(parsed) ? parsed : [...defaultPosts];
                 } catch (_) {
-                    return "";
+                    return [...defaultPosts];
                 }
             }
 
-            function escapeHtml(text) {
-                const div = document.createElement("div");
-                div.textContent = text || "";
-                return div.innerHTML;
+            function saveLocalPosts(posts) {
+                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(posts));
             }
 
-            function getPostImageSrc(post) {
-                const url = (post && post.image_url ? post.image_url : "").trim();
-                return url || DEFAULT_INKWELL_IMAGE;
-            }
-
-            function renderPosts() {
-                const grid = document.getElementById('postsGrid');
-                if (!grid) return;
-
-                if (!postsCache.length) {
-                    grid.innerHTML = "<p style='text-align:center; color:var(--text-light); grid-column:1/-1;'>Aucun article publié pour le moment.</p>";
+            function renderPosts(posts) {
+                currentPosts = posts;
+                if (!posts || posts.length === 0) {
+                    postsGrid.innerHTML = `<p style="grid-column: 1 / -1; text-align:center; color:var(--text-light);">Aucun article publié pour le moment.</p>`;
                     return;
                 }
 
-                grid.innerHTML = postsCache.map((post, idx) => {
-                    const imgSrc = getPostImageSrc(post);
+                postsGrid.innerHTML = posts.map(post => {
+                    const adminButtons = currentAdminEmail
+                        ? `<div class="admin-card-actions">
+                               <button type="button" class="edit-post-btn" data-edit-id="${escapeHtml(post.id)}">Modifier</button>
+                               <button type="button" class="delete-post-btn" data-delete-id="${escapeHtml(post.id)}">Supprimer</button>
+                           </div>`
+                        : "";
+
                     return `
                         <article class="post-card">
-                            <div>
-                                <img class="post-cover" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(post.title)}">
-                                <div class="post-body">
-                                    <div class="post-meta">${escapeHtml(post.category || "Article")} · ${formatDate(post.created_at)}</div>
-                                    <h3>${escapeHtml(post.title)}</h3>
-                                    <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
-                                </div>
+                            <img class="post-cover" src="${escapeHtml(getPostImageSrc(post))}" alt="${escapeHtml(post.title)}">
+                            <div class="post-body">
+                                <div class="post-meta">${escapeHtml(post.category || "Article")} · ${escapeHtml(formatDate(post.created_at))}</div>
+                                <h3>${escapeHtml(post.title)}</h3>
+                                <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
                             </div>
                             <div class="post-actions">
-                                <button type="button" class="read-more-btn" data-index="${idx}">Lire le texte →</button>
-                                ${currentUser ? `
-                                    <div class="admin-card-actions">
-                                        <button type="button" class="edit-post-btn" data-index="${idx}"><i class="fas fa-pen"></i> Modifier</button>
-                                        <button type="button" class="delete-post-btn" data-id="${escapeHtml(post.id)}" data-image="${escapeHtml(post.image_url || "")}"><i class="fas fa-trash"></i> Supprimer</button>
-                                    </div>
-                                ` : ""}
+                                <button type="button" class="read-more-btn" data-post-id="${escapeHtml(post.id)}">Lire le texte →</button>
+                                ${adminButtons}
                             </div>
                         </article>
                     `;
                 }).join("");
 
-                grid.querySelectorAll(".read-more-btn").forEach(btn => {
-                    btn.addEventListener("click", function() {
-                        const p = postsCache[Number(this.getAttribute("data-index"))];
-                        if (!p) return;
-                        const readerImg = document.getElementById("readerImage");
-                        readerImg.src = getPostImageSrc(p);
-                        readerImg.alt = p.title || "Illustration de l'article";
-                        document.getElementById("readerMeta").textContent = `${p.category || "Article"} · ${formatDate(p.created_at)}`;
-                        document.getElementById("readerTitle").textContent = p.title;
-                        document.getElementById("readerContent").textContent = p.content;
+                postsGrid.querySelectorAll(".read-more-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const post = currentPosts.find(p => String(p.id) === String(btn.dataset.postId));
+                        if (!post) return;
+                        readerImage.src = getPostImageSrc(post);
+                        readerImage.alt = post.title || "Illustration";
+                        readerMeta.textContent = `${post.category || "Article"} · ${formatDate(post.created_at)}`;
+                        readerTitle.textContent = post.title;
+                        readerContent.textContent = post.content;
                         readerModal.style.display = "flex";
                     });
                 });
 
-                grid.querySelectorAll(".edit-post-btn").forEach(btn => {
-                    btn.addEventListener("click", function() {
-                        const p = postsCache[Number(this.getAttribute("data-index"))];
-                        if (p) startEditPost(p);
+                postsGrid.querySelectorAll(".edit-post-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const post = currentPosts.find(p => String(p.id) === String(btn.dataset.editId));
+                        if (post) startEditingPost(post);
                     });
                 });
 
-                grid.querySelectorAll(".delete-post-btn").forEach(btn => {
-                    btn.addEventListener("click", async function() {
-                        const postId = this.getAttribute("data-id");
-                        const imageUrl = this.getAttribute("data-image");
-                        if (!confirm("Supprimer cet article ?")) return;
-                        await deletePost(postId, imageUrl);
+                postsGrid.querySelectorAll(".delete-post-btn").forEach(btn => {
+                    btn.addEventListener("click", async () => {
+                        const postId = btn.dataset.deleteId;
+                        const post = currentPosts.find(p => String(p.id) === String(postId));
+                        if (!post) return;
+                        if (!confirm(`Supprimer définitivement l'article « ${post.title} » ?`)) return;
+
+                        if (supabaseClient) {
+                            const { error } = await supabaseClient.from("posts").delete().eq("id", postId);
+                            if (error) {
+                                alert("Erreur lors de la suppression : " + error.message);
+                                return;
+                            }
+                            if (String(editingPostIdInput.value) === String(postId)) {
+                                resetPostFormToCreate();
+                            }
+                            await loadPosts();
+                        } else {
+                            const updated = getLocalPosts().filter(p => String(p.id) !== String(postId));
+                            saveLocalPosts(updated);
+                            if (String(editingPostIdInput.value) === String(postId)) {
+                                resetPostFormToCreate();
+                            }
+                            renderPosts(updated);
+                        }
                     });
                 });
             }
@@ -678,445 +1065,304 @@
                         .from("posts")
                         .select("*")
                         .order("created_at", { ascending: false });
+
                     if (!error && Array.isArray(data)) {
-                        postsCache = data;
-                        renderPosts();
+                        renderPosts(data);
                         return;
                     }
                 }
-
-                const raw = localStorage.getItem(LOCAL_POSTS_KEY);
-                if (raw) {
-                    try {
-                        postsCache = JSON.parse(raw);
-                    } catch (_) {
-                        postsCache = [...defaultPosts];
-                    }
-                } else {
-                    postsCache = [...defaultPosts];
-                    localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
-                }
-                renderPosts();
+                renderPosts(getLocalPosts());
             }
 
-            function fileToDataUrl(file) {
-                return new Promise((resolve, reject) => {
+            async function uploadImageIfNeeded(file) {
+                if (!file) return null;
+
+                if (supabaseClient) {
+                    const fileExt = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+                    const filePath = `post-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt || "jpg"}`;
+
+                    const { error: uploadError } = await supabaseClient
+                        .storage
+                        .from(STORAGE_BUCKET)
+                        .upload(filePath, file, { cacheControl: "3600", upsert: false });
+
+                    if (uploadError) {
+                        throw new Error("Échec de l'envoi de l'image : " + uploadError.message);
+                    }
+
+                    const { data: publicUrlData } = supabaseClient
+                        .storage
+                        .from(STORAGE_BUCKET)
+                        .getPublicUrl(filePath);
+
+                    return publicUrlData.publicUrl;
+                }
+
+                return await new Promise((resolve, reject) => {
                     const reader = new FileReader();
                     reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
+                    reader.onerror = () => reject(new Error("Impossible de lire l'image."));
                     reader.readAsDataURL(file);
                 });
             }
 
-            async function uploadArticleImage(file) {
-                if (!file) return null;
+            closeReaderModal.addEventListener("click", () => { readerModal.style.display = "none"; });
+            readerModal.addEventListener("click", (e) => { if (e.target === readerModal) readerModal.style.display = "none"; });
 
-                if (supabaseClient) {
-                    const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
-                    const filePath = `posts/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext || "jpg"}`;
-
-                    const { error: uploadError } = await supabaseClient.storage
-                        .from(STORAGE_BUCKET)
-                        .upload(filePath, file, {
-                            cacheControl: "3600",
-                            upsert: false
-                        });
-
-                    if (uploadError) {
-                        throw new Error("Upload image impossible : " + uploadError.message);
-                    }
-
-                    const { data } = supabaseClient.storage
-                        .from(STORAGE_BUCKET)
-                        .getPublicUrl(filePath);
-
-                    return data && data.publicUrl ? data.publicUrl : "";
-                }
-
-                return await fileToDataUrl(file);
-            }
-
-            function extractStoragePathFromUrl(url) {
-                if (!url || !url.includes(`/storage/v1/object/public/${STORAGE_BUCKET}/`)) {
-                    return null;
-                }
-                const part = url.split(`/storage/v1/object/public/${STORAGE_BUCKET}/`)[1];
-                return part ? decodeURIComponent(part.split("?")[0]) : null;
-            }
-
-            async function createPost(newPost) {
-                if (supabaseClient) {
-                    const { error } = await supabaseClient.from("posts").insert([newPost]);
-                    if (error) throw error;
-                    await loadPosts();
-                    return;
-                }
-
-                postsCache.unshift({
-                    id: "local-" + Date.now(),
-                    ...newPost,
-                    created_at: new Date().toISOString()
-                });
-                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
-                renderPosts();
-            }
-
-            async function updatePost(postId, updatedFields) {
-                if (supabaseClient) {
-                    const { error } = await supabaseClient
-                        .from("posts")
-                        .update(updatedFields)
-                        .eq("id", postId);
-                    if (error) throw error;
-                    await loadPosts();
-                    return;
-                }
-
-                postsCache = postsCache.map(item =>
-                    String(item.id) === String(postId) ? { ...item, ...updatedFields } : item
-                );
-                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
-                renderPosts();
-            }
-
-            async function deletePost(postId, imageUrl) {
-                if (supabaseClient) {
-                    const storagePath = extractStoragePathFromUrl(imageUrl);
-                    if (storagePath) {
-                        await supabaseClient.storage.from(STORAGE_BUCKET).remove([storagePath]);
-                    }
-                    const { error } = await supabaseClient.from("posts").delete().eq("id", postId);
-                    if (error) {
-                        alert("Impossible de supprimer l'article : " + error.message);
-                        return;
-                    }
-                    if (editingPostIdInput.value === String(postId)) {
-                        resetPostForm();
-                    }
-                    await loadPosts();
-                    return;
-                }
-
-                postsCache = postsCache.filter(item => String(item.id) !== String(postId));
-                localStorage.setItem(LOCAL_POSTS_KEY, JSON.stringify(postsCache));
-                renderPosts();
-            }
-
-            postImageFile.addEventListener("change", async function() {
-                const file = this.files && this.files[0];
-                if (!file) {
-                    updateImagePreview(existingImageUrlInput.value);
-                    return;
-                }
-                const dataUrl = await fileToDataUrl(file);
-                updateImagePreview(dataUrl);
-            });
-
-            clearImageBtn.addEventListener("click", function() {
-                postImageFile.value = "";
-                existingImageUrlInput.value = "";
-                updateImagePreview("");
-            });
-
-            cancelEditBtn.addEventListener("click", function() {
+            openLoginBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 clearMessages();
-                resetPostForm();
+                if (currentAdminEmail) {
+                    switchView(adminView);
+                } else {
+                    switchView(loginView);
+                }
+                openModal();
             });
 
-            document.getElementById('showForgotViewBtn').addEventListener('click', function() {
+            closeModal.addEventListener("click", closeAuthModal);
+            authModal.addEventListener("click", (e) => { if (e.target === authModal) closeAuthModal(); });
+
+            showForgotViewBtn.addEventListener("click", () => {
                 clearMessages();
-                const currentLoginEmail = document.getElementById('loginEmail').value.trim();
+                const currentLoginEmail = document.getElementById("loginEmail").value.trim();
                 if (currentLoginEmail) {
-                    document.getElementById('forgotEmail').value = currentLoginEmail;
+                    document.getElementById("forgotEmail").value = currentLoginEmail;
                 }
-                setAuthModalView(forgotView);
+                switchView(forgotView);
             });
 
-            document.getElementById('backToLoginBtn').addEventListener('click', function() {
+            backToLoginBtn.addEventListener("click", () => {
                 clearMessages();
-                setAuthModalView(loginView);
+                switchView(loginView);
             });
 
-            openBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                clearMessages();
-                if (!currentUser && !isRecoveryMode) {
-                    resetPostForm();
-                } else if (!editingPostIdInput.value) {
-                    updateImagePreview("");
-                }
-                authModal.style.display = 'flex';
-                syncAuthUI();
-            });
-
-            closeBtn.addEventListener('click', function() {
-                authModal.style.display = 'none';
-                clearMessages();
-            });
-
-            closeReaderModal.addEventListener('click', function() {
-                readerModal.style.display = 'none';
-            });
-
-            window.addEventListener('click', function(e) {
-                if (e.target === authModal) {
-                    authModal.style.display = 'none';
-                    clearMessages();
-                }
-                if (e.target === readerModal) {
-                    readerModal.style.display = 'none';
-                }
-            });
-
-            document.querySelectorAll('.toggle-password').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const input = document.getElementById(this.getAttribute('data-target'));
-                    const icon = this.querySelector('i');
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        icon.classList.remove('fa-eye');
-                        icon.classList.add('fa-eye-slash');
+            document.querySelectorAll(".toggle-password").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const input = document.getElementById(btn.dataset.target);
+                    const icon = btn.querySelector("i");
+                    if (!input) return;
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.replace("fa-eye", "fa-eye-slash");
                     } else {
-                        input.type = 'password';
-                        icon.classList.remove('fa-eye-slash');
-                        icon.classList.add('fa-eye');
+                        input.type = "password";
+                        icon.classList.replace("fa-eye-slash", "fa-eye");
                     }
                 });
             });
 
-            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            loginForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 clearMessages();
-                const email = document.getElementById('loginEmail').value.trim();
-                const password = document.getElementById('loginPassword').value;
+                const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+                const password = document.getElementById("loginPassword").value;
 
                 if (supabaseClient) {
                     const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
                     if (error) {
-                        showError("Connexion impossible : vérifiez votre email et mot de passe.");
+                        showError("Identifiants incorrects ou compte non autorisé.");
                         return;
                     }
-                    currentUser = data.user;
-                    isRecoveryMode = false;
-                    showSuccess("Connexion réussie.");
-                    syncAuthUI();
-                    return;
+                    updateAdminNavState(data.user.email);
+                    switchView(adminView);
+                } else {
+                    localStorage.setItem(LOCAL_SESSION_KEY, email);
+                    updateAdminNavState(email);
+                    switchView(adminView);
                 }
-
-                currentUser = { email };
-                localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(currentUser));
-                showSuccess("Connecté en mode démonstration local.");
-                syncAuthUI();
             });
 
-            document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+            forgotPasswordForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 clearMessages();
-                const email = document.getElementById('forgotEmail').value.trim();
-                if (!email) {
-                    showError("Veuillez entrer votre adresse email.");
-                    return;
-                }
+                const email = document.getElementById("forgotEmail").value.trim().toLowerCase();
+                const sendResetBtn = document.getElementById("sendResetBtn");
 
                 if (!supabaseClient) {
-                    showError("Supabase n'est pas configuré sur cette page.");
+                    showError("Configurez d'abord Supabase pour l'envoi d'emails de réinitialisation.");
                     return;
                 }
 
-                const sendResetBtn = document.getElementById('sendResetBtn');
                 sendResetBtn.disabled = true;
                 sendResetBtn.textContent = "Envoi en cours...";
 
-                try {
-                    const redirectUrl = window.location.origin + window.location.pathname;
-                    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-                        redirectTo: redirectUrl
-                    });
+                const redirectTo = window.location.origin + window.location.pathname;
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, { redirectTo });
 
-                    if (error) {
-                        showError("Impossible d'envoyer l'email : " + error.message);
-                    } else {
-                        showSuccess("Un lien de réinitialisation vient d'être envoyé à " + email + ". Vérifiez votre boîte mail (et les spams).");
-                    }
-                } finally {
-                    sendResetBtn.disabled = false;
-                    sendResetBtn.textContent = "Envoyer le lien par email";
+                sendResetBtn.disabled = false;
+                sendResetBtn.textContent = "Envoyer le lien par email";
+
+                if (error) {
+                    showError("Impossible d'envoyer l'email : " + error.message);
+                    return;
                 }
+
+                showSuccess("Si cette adresse correspond à un compte administrateur, un lien de réinitialisation vient d'être envoyé.");
             });
 
-            document.getElementById('updatePasswordForm').addEventListener('submit', async function(e) {
+            updatePasswordForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 clearMessages();
-
-                const newPassword = document.getElementById('newPassword').value;
-                const confirmPassword = document.getElementById('confirmNewPassword').value;
+                const newPassword = document.getElementById("newPassword").value;
+                const confirmNewPassword = document.getElementById("confirmNewPassword").value;
+                const saveNewPasswordBtn = document.getElementById("saveNewPasswordBtn");
 
                 if (newPassword.length < 6) {
                     showError("Le mot de passe doit contenir au moins 6 caractères.");
                     return;
                 }
-
-                if (newPassword !== confirmPassword) {
+                if (newPassword !== confirmNewPassword) {
                     showError("Les deux mots de passe ne correspondent pas.");
                     return;
                 }
-
                 if (!supabaseClient) {
-                    showError("Supabase n'est pas configuré.");
+                    showError("Session Supabase introuvable.");
                     return;
                 }
 
-                const saveBtn = document.getElementById('saveNewPasswordBtn');
-                saveBtn.disabled = true;
-                saveBtn.textContent = "Enregistrement...";
+                saveNewPasswordBtn.disabled = true;
+                saveNewPasswordBtn.textContent = "Enregistrement...";
 
-                try {
-                    const { data, error } = await supabaseClient.auth.updateUser({
-                        password: newPassword
-                    });
+                const { data, error } = await supabaseClient.auth.updateUser({ password: newPassword });
 
-                    if (error) {
-                        showError("Erreur lors de la mise à jour : " + error.message);
-                        return;
-                    }
+                saveNewPasswordBtn.disabled = false;
+                saveNewPasswordBtn.textContent = "Enregistrer le nouveau mot de passe";
 
-                    isRecoveryMode = false;
-                    currentUser = data && data.user ? data.user : currentUser;
-                    document.getElementById('updatePasswordForm').reset();
+                if (error) {
+                    showError("Erreur lors de la mise à jour : " + error.message);
+                    return;
+                }
 
-                    if (window.location.hash) {
-                        history.replaceState(null, "", window.location.pathname + window.location.search);
-                    }
-
-                    showSuccess("Votre nouveau mot de passe a bien été enregistré !");
-                    syncAuthUI();
-                } finally {
-                    saveBtn.disabled = false;
-                    saveBtn.textContent = "Enregistrer le nouveau mot de passe";
+                updatePasswordForm.reset();
+                showSuccess("Mot de passe mis à jour avec succès !");
+                if (data && data.user) {
+                    updateAdminNavState(data.user.email);
+                    setTimeout(() => { clearMessages(); switchView(adminView); }, 1000);
                 }
             });
 
-            document.getElementById('logoutBtn').addEventListener('click', async function() {
+            logoutBtn.addEventListener("click", async () => {
                 clearMessages();
                 if (supabaseClient) {
                     await supabaseClient.auth.signOut();
                 }
                 localStorage.removeItem(LOCAL_SESSION_KEY);
-                currentUser = null;
-                isRecoveryMode = false;
-                resetPostForm();
-                syncAuthUI();
-                authModal.style.display = 'none';
+                updateAdminNavState(null);
+                switchView(loginView);
+                closeAuthModal();
             });
 
-            document.getElementById('publishPostForm').addEventListener('submit', async function(e) {
+            publishPostForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
                 clearMessages();
 
-                if (!currentUser) {
-                    showError("Vous devez être connecté pour publier ou modifier un article.");
-                    return;
-                }
-
-                const title = document.getElementById('postTitle').value.trim();
-                const category = document.getElementById('postCategory').value;
-                const excerpt = document.getElementById('postExcerpt').value.trim();
-                const content = document.getElementById('postContent').value.trim();
                 const editingId = editingPostIdInput.value.trim();
-                const selectedFile = postImageFile.files && postImageFile.files[0];
+                const title = document.getElementById("postTitle").value.trim();
+                const category = document.getElementById("postCategory").value;
+                const excerpt = document.getElementById("postExcerpt").value.trim();
+                const content = document.getElementById("postContent").value.trim();
 
                 if (!title || !excerpt || !content) {
-                    showError("Merci de remplir le titre, l'extrait et le texte de l'article.");
+                    showError("Veuillez remplir le titre, l'extrait et le texte de l'article.");
                     return;
                 }
 
                 submitPostBtn.disabled = true;
-                submitPostBtn.textContent = editingId ? "Enregistrement..." : "Publication en cours...";
+                submitPostBtn.textContent = editingId ? "Enregistrement..." : "Publication...";
 
                 try {
                     let finalImageUrl = existingImageUrlInput.value.trim();
-
-                    if (selectedFile) {
-                        finalImageUrl = await uploadArticleImage(selectedFile);
+                    if (pendingSelectedFile) {
+                        finalImageUrl = await uploadImageIfNeeded(pendingSelectedFile);
                     }
 
-                    const payload = {
-                        title,
-                        category,
-                        excerpt,
-                        content,
-                        image_url: finalImageUrl
-                    };
-
-                    if (editingId) {
-                        await updatePost(editingId, payload);
-                        showSuccess("Article modifié avec succès !");
+                    if (supabaseClient) {
+                        const payload = { title, category, excerpt, content, image_url: finalImageUrl };
+                        if (editingId) {
+                            const { error } = await supabaseClient.from("posts").update(payload).eq("id", editingId);
+                            if (error) throw new Error(error.message);
+                            showSuccess("Article modifié avec succès !");
+                        } else {
+                            const { error } = await supabaseClient.from("posts").insert([payload]);
+                            if (error) throw new Error(error.message);
+                            showSuccess("Article publié avec succès !");
+                        }
+                        resetPostFormToCreate();
+                        await loadPosts();
                     } else {
-                        await createPost(payload);
-                        showSuccess("Article publié avec succès !");
+                        const posts = getLocalPosts();
+                        if (editingId) {
+                            const updated = posts.map(p => String(p.id) === String(editingId)
+                                ? { ...p, title, category, excerpt, content, image_url: finalImageUrl }
+                                : p
+                            );
+                            saveLocalPosts(updated);
+                            showSuccess("Article modifié avec succès !");
+                        } else {
+                            const newPost = {
+                                id: "post-" + Date.now(),
+                                title, category, excerpt, content,
+                                image_url: finalImageUrl,
+                                created_at: new Date().toISOString()
+                            };
+                            saveLocalPosts([newPost, ...posts]);
+                            showSuccess("Article publié avec succès !");
+                        }
+                        resetPostFormToCreate();
+                        renderPosts(getLocalPosts());
                     }
 
-                    resetPostForm();
-                    setTimeout(() => {
-                        authModal.style.display = 'none';
-                        clearMessages();
-                    }, 800);
+                    setTimeout(() => { closeAuthModal(); }, 900);
                 } catch (err) {
-                    showError(err && err.message ? err.message : "Erreur lors de l'enregistrement de l'article.");
+                    showError(err.message || "Erreur lors de l'enregistrement de l'article.");
                 } finally {
                     submitPostBtn.disabled = false;
-                    submitPostBtn.textContent = editingPostIdInput.value
+                    submitPostBtn.textContent = editingPostIdInput.value.trim()
                         ? "Enregistrer les modifications"
                         : "Publier l'article";
                 }
             });
 
-            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                if (emailInput && emailInput.value.trim()) {
-                    alert("Merci ! Votre adresse (" + emailInput.value.trim() + ") a bien été prise en compte.");
-                    emailInput.value = "";
-                }
-            });
+            const newsletterForm = document.getElementById("newsletterForm");
+            if (newsletterForm) {
+                newsletterForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    alert("Merci pour votre inscription ! Vous recevrez les prochains textes du carnet.");
+                    newsletterForm.reset();
+                });
+            }
 
-            (async function init() {
-                if (window.location.hash && window.location.hash.includes("type=recovery")) {
-                    isRecoveryMode = true;
-                }
-
+            async function initSessionAndPosts() {
+                updateImagePreview("");
                 if (supabaseClient) {
                     supabaseClient.auth.onAuthStateChange((event, session) => {
                         if (event === "PASSWORD_RECOVERY") {
-                            isRecoveryMode = true;
-                            currentUser = session && session.user ? session.user : null;
                             clearMessages();
-                            syncAuthUI();
-                            return;
+                            switchView(resetView);
+                            openModal();
+                        } else if (session && session.user) {
+                            updateAdminNavState(session.user.email);
+                        } else {
+                            updateAdminNavState(null);
                         }
-                        currentUser = session && session.user ? session.user : null;
-                        syncAuthUI();
                     });
 
                     const { data } = await supabaseClient.auth.getSession();
                     if (data && data.session && data.session.user) {
-                        currentUser = data.session.user;
+                        updateAdminNavState(data.session.user.email);
                     }
                 } else {
-                    const savedSession = localStorage.getItem(LOCAL_SESSION_KEY);
-                    if (savedSession) {
-                        try {
-                            currentUser = JSON.parse(savedSession);
-                        } catch (_) {
-                            currentUser = null;
-                        }
+                    const localEmail = localStorage.getItem(LOCAL_SESSION_KEY);
+                    if (localEmail) {
+                        updateAdminNavState(localEmail);
                     }
                 }
 
-                updateImagePreview("");
-                syncAuthUI();
                 await loadPosts();
-            })();
+            }
+
+            initSessionAndPosts();
         })();
     </script>
 </body>
